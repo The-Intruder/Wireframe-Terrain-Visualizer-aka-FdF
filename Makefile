@@ -17,11 +17,14 @@ CC_OPTS := -I /usr/local/include \
 	-L./assets/libft -lft \
 	-L. -lfdf
 
-SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c fdf_handle_err.c
+SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c fdf_handle_err.c \
+	./fdf_draw/fdf_assign_coord.c \
+	./fdf_draw/fdf_draw_line.c \
+	./fdf_draw/fdf_set_instruct.c
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
-MAP := julia.fdf
+MAP := t1.fdf
 
 
 all: $(NAME)
@@ -35,28 +38,29 @@ $(NAME): $(OBJS) fdf.h
 	@echo "\n$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...\n$(NC)"
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
 
-compile: all clean fdf.h
+compile: re fdf.h
 	@echo "\n$(YEL)Compiling the $(GRA)fdf_main.c $(YEL)...\n\n$(NC)"
 	@$(CC) ${CC_FLAGS} $(CC_OPTS) -o fdf fdf_main.c
+	@make fclean
 
 execute: compile fdf
 	@echo "$(CYN)Loading X-Window ...$(NC)\n"
 	@time ./fdf ./assets/test_maps/$(MAP)
 
 clean:
-	@echo "\n$(RED)Cleaning up Object files ...\n$(NC)"
-	@rm -f *.o
+	@echo "\n$(RED)Cleaning up Object files ...\n\n$(NC)"
+	@rm -f *.o ./fdf_draw/*.o
 
 fclean: clean
 	@echo "$(RED)Cleaning up the $(GRA)$(NAME)$(RED) archive file ...\n\n$(NC)"
 	@rm -f $(NAME)
 
-exclean:
-	@echo "\n$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n\n$(NC)"
+exclean: fclean
+	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n\n$(NC)"
 	@rm -f fdf
 
-re: fclean exclean all
+re: exclean all
 
 bonus: re
 
-.PHONY: all clean fclean re compile execute exclean
+.PHONY: all clean fclean re compile execute exclean bonus

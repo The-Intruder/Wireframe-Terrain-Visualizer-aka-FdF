@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <limits.h>
 
 /* --------------------------------- Macros --------------------------------- */
 # define TRUE 1
@@ -43,7 +44,9 @@ typedef struct s_linedraw
 	int	err;
 	int	e2;
 	int	x0;
+	int	x0_bckp;
 	int	y0;
+	int	y0_bckp;
 	int	cl0;
 	int	z0;
 	int	x1;
@@ -74,14 +77,31 @@ typedef struct s_matrix
 	int	***matrix_ptr;
 }	t_matrix;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+typedef struct s_loop
+{
+	int	x;
+	int	y;
+}	t_loop;
+
 typedef struct s_vars {
 	void			*mlx;
 	void			*win;
+	t_img			img;
 	int				map_line_len;
 	t_matrix		matrix;
 	t_mapfile		mapfile;
 	t_mapdata		mapdata;
 	t_linedraw		linedraw;
+	t_loop			loop;
 }	t_vars;
 
 /* ------------------------------- Prototypes ------------------------------- */
@@ -89,5 +109,9 @@ typedef struct s_vars {
 void	alloc_store_matrix(char *map, t_vars *vars);
 void	store_pxl_data(char *map, t_vars *vars);
 void	handle_err(int err_code);
+int		linear_color(t_vars	*vars);
+void	iter_x(t_vars *vars);
+void	drawline_calcul(t_vars *vars);
+void	draw_map(t_vars	*vars);
 
 #endif

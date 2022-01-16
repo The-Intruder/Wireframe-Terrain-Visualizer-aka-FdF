@@ -60,12 +60,18 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (handle_err(6), 1);
 	vars.mlx = mlx_init();
-	if (vars.mlx == NULL)
+	if (!vars.mlx)
 		return (handle_err(7), 1);
 	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
-	if (vars.win == NULL)
+	if (!vars.win)
 		return (handle_err(8), 1);
+	vars.img.img_ptr = mlx_new_image(vars.mlx, 1920, 1080);
+	vars.img.addr = mlx_get_data_addr(vars.img.img_ptr, \
+		&vars.img.bits_per_pixel, &vars.img.line_length, &vars.img.endian);
 	alloc_store_matrix(argv[1], &vars);
+	printf("Image loading ...\n\n");
+	draw_map(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 	mlx_loop(vars.mlx);
 	return (0);
 }
