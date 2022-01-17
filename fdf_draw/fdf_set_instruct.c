@@ -14,42 +14,75 @@
 
 /* -------------------------------------------------------------------------- */
 
-int	linear_color(t_vars *vars)
+static void	assign_cl(t_vars *vars)
 {
-	t_uint	color;
-	t_uint	count;
-	t_uint	min;
-	t_uint	max;
-	t_uint	x;
-
-	count = (vars->linedraw.x0 + vars->linedraw.y0) / 2;
-	min = (vars->linedraw.x0_bckp + vars->linedraw.y0_bckp) / 2;
-	max = (vars->linedraw.x1 + vars->linedraw.y1) / 2;
-	x = (count - min) / (max - min);
-	color = (x * vars->linedraw.cl0) + ((x - 1) * vars->linedraw.cl1);
-	printf("%u\n", (t_uint)color);
-	return (color ^ UINT_MAX);
+	vars->linedraw.cl0 = \
+		vars->matrix.matrix_ptr[vars->linedraw.y0][vars->linedraw.x0][1];
+	vars->linedraw.cl1 = \
+		vars->matrix.matrix_ptr[vars->linedraw.y1][vars->linedraw.x1][1];
+	if (vars->linedraw.cl0 > vars->linedraw.cl1)
+		vars->linedraw.cl = vars->linedraw.cl0;
+	else
+		vars->linedraw.cl = vars->linedraw.cl1;
 }
 
 /* -------------------------------------------------------------------------- */
 
-static void	set_xy_offset(t_vars *vars)
+static void	assign_z(t_vars *vars)
 {
-	int	diameter;
+	vars->linedraw.z0 = \
+		vars->matrix.matrix_ptr[vars->linedraw.y0][vars->linedraw.x0][0];
+	vars->linedraw.z1 = \
+		vars->matrix.matrix_ptr[vars->linedraw.y1][vars->linedraw.x1][0];
+}
 
-	diameter = sqrt(pow(vars->matrix.max_x, 2) + pow(vars->matrix.max_y, 2));
-	vars->mapdata.x_offset = (diameter / 2);
-	vars->mapdata.x_offset += (WIN_WIDTH / 2) - vars->mapdata.x_offset;
-	vars->mapdata.y_offset = 10;
+/* -------------------------------------------------------------------------- */
+
+static void	assign_y_z_cl_ndraw(t_vars *vars, int y0, int y1)
+{
+	vars->linedraw.y0 = y0;
+	vars->linedraw.y1 = y1;
+	assign_z(vars);
+	assign_cl(vars);
+	drawline_calcul(vars);
+}
+
+/* -------------------------------------------------------------------------- */
+
+static void	assign_x(t_vars *vars, int x0, int x1)
+{
+	vars->linedraw.x0 = x0;
+	vars->linedraw.x1 = x1;
 }
 
 /* -------------------------------------------------------------------------- */
 
 void	draw_map(t_vars	*vars)
 {
-	vars->mapdata.zoom = 5;
-	set_xy_offset(vars);
-	iter_x(vars);
+	vars->loop.y = 0;
+	while (vars->loop.y < vars->matrix.max_y - 1)
+	{
+		vars->loop.x = 0;
+		while (vars->loop.x < vars->matrix.max_x - 1)
+		{
+			assign_x(vars, vars->loop.x, vars->loop.x + 1);
+			assign_y_z_cl_ndraw(vars, vars->loop.y, vars->loop.y);
+			assign_x(vars, vars->loop.x, vars->loop.x);
+			assign_y_z_cl_ndraw(vars, vars->loop.y, vars->loop.y + 1);
+			if (vars->loop.x == vars->matrix.max_x - 2)
+			{
+				assign_x(vars, vars->loop.x + 1, vars->loop.x + 1);
+				assign_y_z_cl_ndraw(vars, vars->loop.y, vars->loop.y + 1);
+			}
+			if (vars->loop.y == vars->matrix.max_y - 2)
+			{
+				assign_x(vars, vars->loop.x, vars->loop.x + 1);
+				assign_y_z_cl_ndraw(vars, vars->loop.y + 1, vars->loop.y + 1);
+			}
+			vars->loop.x++;
+		}
+		vars->loop.y++;
+	}
 }
 
 /* -------------------------------------------------------------------------- */

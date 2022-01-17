@@ -18,9 +18,9 @@ CC_OPTS := -I /usr/local/include \
 	-L. -lfdf
 
 SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c fdf_handle_err.c \
-	./fdf_draw/fdf_assign_coord.c \
 	./fdf_draw/fdf_draw_line.c \
-	./fdf_draw/fdf_set_instruct.c
+	./fdf_draw/fdf_set_instruct.c \
+	./fdf_handle_events/fdf_handle_translation.c
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a

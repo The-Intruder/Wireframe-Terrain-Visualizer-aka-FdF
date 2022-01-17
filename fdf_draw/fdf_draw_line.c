@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF_draw_output.c                                  :+:      :+:    :+:   */
+/*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnaimi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -66,7 +66,7 @@ static void	drawline_iter(t_vars *vars)
 		img_pixel_put(vars, \
 			vars->linedraw.x0 + vars->mapdata.x_offset, \
 			vars->linedraw.y0 + vars->mapdata.y_offset, \
-			linear_color(vars));
+			vars->linedraw.cl);
 		vars->linedraw.e2 = 2 * vars->linedraw.err;
 		if (vars->linedraw.e2 >= vars->linedraw.dlta_y)
 		{
@@ -100,15 +100,3 @@ void	drawline_calcul(t_vars *vars)
 }
 
 /* -------------------------------------------------------------------------- */
-/*
-mlx_pixel_put(vars->mlx, vars->win, \
-	vars->linedraw.x0 + vars->mapdata.x_offset, \
-	vars->linedraw.y0 + vars->mapdata.y_offset, \
-	0x00FFFFFF);
-*/
-/*
-img_pixel_put(vars, \
-			vars->linedraw.x0 + vars->mapdata.x_offset, \
-			vars->linedraw.y0 + vars->mapdata.y_offset, \
-			0x00FFFFFF);
-*/

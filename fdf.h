@@ -24,10 +24,18 @@
 # include <limits.h>
 
 /* --------------------------------- Macros --------------------------------- */
-# define TRUE 1
-# define FALSE 0
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define TRUE			1
+# define FALSE			0
+# define WIN_WIDTH		1920
+# define WIN_HEIGHT		1080
+# define NOEVENTMASK	0L
+# define KEYPRESS		2
+# define KEY_LEFT		123
+# define KEY_DOWN		125
+# define KEY_RIGHT		124
+# define KEY_UP			126
+# define KEY_R			15
+# define KEY_ESCAPE		53
 
 /* -------------------------------- Typedefs -------------------------------- */
 typedef unsigned char	t_uchar;
@@ -44,15 +52,14 @@ typedef struct s_linedraw
 	int	err;
 	int	e2;
 	int	x0;
-	int	x0_bckp;
 	int	y0;
-	int	y0_bckp;
 	int	cl0;
 	int	z0;
 	int	x1;
 	int	y1;
 	int	z1;
 	int	cl1;
+	int	cl;
 }	t_linedraw;
 
 typedef struct s_mapdata
@@ -109,9 +116,12 @@ typedef struct s_vars {
 void	alloc_store_matrix(char *map, t_vars *vars);
 void	store_pxl_data(char *map, t_vars *vars);
 void	handle_err(int err_code);
-int		linear_color(t_vars	*vars);
 void	iter_x(t_vars *vars);
 void	drawline_calcul(t_vars *vars);
 void	draw_map(t_vars	*vars);
+void	reset_window(t_vars *vars);
+void	set_default_params(t_vars *vars);
+int		xclose(void *v_vars);
+int		handle_event(int key_press, t_vars *vars);
 
 #endif
