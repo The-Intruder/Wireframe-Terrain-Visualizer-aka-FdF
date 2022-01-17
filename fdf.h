@@ -35,7 +35,12 @@
 # define KEY_RIGHT		124
 # define KEY_UP			126
 # define KEY_R			15
+# define KEY_P			35
 # define KEY_ESCAPE		53
+# define KEY_PAD_SUB	78
+# define KEY_PAD_ADD	69
+# define KEY_PAGE_UP	116
+# define KEY_PAGE_DOWN	121
 
 /* -------------------------------- Typedefs -------------------------------- */
 typedef unsigned char	t_uchar;
@@ -68,6 +73,8 @@ typedef struct s_mapdata
 	int	x_offset;
 	int	y_offset;
 	int	z_offset;
+	int	cl_offset;
+	int	iso_pro_bool;
 }	t_mapdata;
 
 typedef struct s_mapfile

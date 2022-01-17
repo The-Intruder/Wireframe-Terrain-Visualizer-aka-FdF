@@ -91,6 +91,9 @@ void	set_default_params(t_vars *vars)
 	vars->mapdata.zoom = 5;
 	vars->mapdata.x_offset = get_x_offset(vars);
 	vars->mapdata.y_offset = 50;
+	vars->mapdata.z_offset = 1;
+	vars->mapdata.cl_offset = 0;
+	vars->mapdata.iso_pro_bool = TRUE;
 }
 
 /* -------------------------------------------------------------------------- */

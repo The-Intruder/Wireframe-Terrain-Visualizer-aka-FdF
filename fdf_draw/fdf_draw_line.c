@@ -19,6 +19,8 @@ static void	project_iso(t_vars *vars)
 	int	old_x;
 	int	old_y;
 
+	if (!vars->mapdata.iso_pro_bool)
+		return ;
 	old_x = vars->linedraw.x0;
 	old_y = vars->linedraw.y0;
 	vars->linedraw.x0 = (old_x - old_y) * cos(0.523599);
@@ -66,7 +68,7 @@ static void	drawline_iter(t_vars *vars)
 		img_pixel_put(vars, \
 			vars->linedraw.x0 + vars->mapdata.x_offset, \
 			vars->linedraw.y0 + vars->mapdata.y_offset, \
-			vars->linedraw.cl);
+			vars->linedraw.cl + vars->mapdata.cl_offset);
 		vars->linedraw.e2 = 2 * vars->linedraw.err;
 		if (vars->linedraw.e2 >= vars->linedraw.dlta_y)
 		{

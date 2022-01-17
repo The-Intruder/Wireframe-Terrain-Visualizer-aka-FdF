@@ -31,9 +31,11 @@ static void	assign_cl(t_vars *vars)
 static void	assign_z(t_vars *vars)
 {
 	vars->linedraw.z0 = \
-		vars->matrix.matrix_ptr[vars->linedraw.y0][vars->linedraw.x0][0];
+		vars->matrix.matrix_ptr[vars->linedraw.y0][vars->linedraw.x0][0] \
+		* vars->mapdata.z_offset;
 	vars->linedraw.z1 = \
-		vars->matrix.matrix_ptr[vars->linedraw.y1][vars->linedraw.x1][0];
+		vars->matrix.matrix_ptr[vars->linedraw.y1][vars->linedraw.x1][0] \
+		* vars->mapdata.z_offset;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -24,7 +24,7 @@ SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c fdf_handle_err.c \
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
-MAP := t1.fdf
+MAP := julia.fdf
 
 
 all: $(NAME)
