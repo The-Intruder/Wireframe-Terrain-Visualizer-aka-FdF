@@ -49,7 +49,7 @@ execute: compile fdf
 
 clean:
 	@echo "\n$(RED)Cleaning up Object files ...\n\n$(NC)"
-	@rm -f *.o ./fdf_draw/*.o
+	@rm -f *.o ./fdf_draw/*.o ./fdf_handle_events/*.o
 
 fclean: clean
 	@echo "$(RED)Cleaning up the $(GRA)$(NAME)$(RED) archive file ...\n\n$(NC)"
