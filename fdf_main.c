@@ -54,7 +54,7 @@
 
 /* -------------------------------------------------------------------------- */
 
-static void	set_img(t_vars *vars)
+static void	setup_img(t_vars *vars)
 {
 	vars->img.img_ptr = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img_ptr, \
@@ -71,7 +71,7 @@ static	void	init_mlx_params(t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	if (!vars->win)
 		return (free(vars->mlx), handle_err(8));
-	set_img(vars);
+	setup_img(vars);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -94,6 +94,10 @@ void	set_default_params(t_vars *vars)
 	vars->mapdata.z_offset = 1;
 	vars->mapdata.cl_offset = 0;
 	vars->mapdata.iso_pro_bool = TRUE;
+	vars->mapdata.rot_x_bool = FALSE;
+	vars->mapdata.rot_y_bool = FALSE;
+	vars->mapdata.rot_z_bool = FALSE;
+	vars->mapdata.alpha_x = 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -102,7 +106,7 @@ void	reset_window(t_vars *vars)
 {
 	mlx_clear_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img.img_ptr);
-	set_img(vars);
+	setup_img(vars);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -118,8 +122,8 @@ int	main(int argc, char **argv)
 	set_default_params(&vars);
 	draw_map(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
-	mlx_hook(vars.win, 17, NOEVENTMASK, xclose, &vars);
 	mlx_hook(vars.win, KEYPRESS, NOEVENTMASK, handle_event, &vars);
+	mlx_hook(vars.win, 17, NOEVENTMASK, xclose, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

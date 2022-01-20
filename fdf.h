@@ -26,17 +26,23 @@
 /* --------------------------------- Macros --------------------------------- */
 # define TRUE			1
 # define FALSE			0
+
 # define WIN_WIDTH		1920
 # define WIN_HEIGHT		1080
+
 # define NOEVENTMASK	0L
 # define KEYPRESS		2
-# define KEY_LEFT		123
+
+# define KEY_ESCAPE		53
+# define KEY_UP			126
 # define KEY_DOWN		125
 # define KEY_RIGHT		124
-# define KEY_UP			126
+# define KEY_LEFT		123
 # define KEY_R			15
 # define KEY_P			35
-# define KEY_ESCAPE		53
+# define KEY_X			7
+# define KEY_Y			16
+# define KEY_Z			6
 # define KEY_PAD_SUB	78
 # define KEY_PAD_ADD	69
 # define KEY_PAGE_UP	116
@@ -69,12 +75,16 @@ typedef struct s_linedraw
 
 typedef struct s_mapdata
 {
-	int	zoom;
-	int	x_offset;
-	int	y_offset;
-	int	z_offset;
-	int	cl_offset;
-	int	iso_pro_bool;
+	int		zoom;
+	int		x_offset;
+	int		y_offset;
+	int		z_offset;
+	int		cl_offset;
+	int		iso_pro_bool;
+	int		rot_x_bool;
+	int		rot_y_bool;
+	int		rot_z_bool;
+	double	alpha_x;	
 }	t_mapdata;
 
 typedef struct s_mapfile
@@ -109,8 +119,8 @@ typedef struct s_loop
 typedef struct s_vars {
 	void			*mlx;
 	void			*win;
-	t_img			img;
 	int				map_line_len;
+	t_img			img;
 	t_matrix		matrix;
 	t_mapfile		mapfile;
 	t_mapdata		mapdata;
@@ -130,5 +140,12 @@ void	reset_window(t_vars *vars);
 void	set_default_params(t_vars *vars);
 int		xclose(void *v_vars);
 int		handle_event(int key_press, t_vars *vars);
+void	handle_x_rotation(t_vars *vars);
+void	handle_y_rotation(t_vars *vars);
+void	handle_z_rotation(t_vars *vars);
+int		rotate_map(t_vars *vars, int key_code);
+void	handle_zoom_event(t_vars *vars, int key_code);
+void	handle_z_offset_event(t_vars *vars, int key_code);
+void	handle_iso_pro(t_vars *vars);
 
 #endif

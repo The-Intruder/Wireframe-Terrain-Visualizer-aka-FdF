@@ -17,10 +17,13 @@ CC_OPTS := -I /usr/local/include \
 	-L./assets/libft -lft \
 	-L. -lfdf
 
-SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c fdf_handle_err.c \
-	./fdf_draw/fdf_draw_line.c \
-	./fdf_draw/fdf_set_instruct.c \
-	./fdf_handle_events/fdf_handle_translation.c
+SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
+	fdf_draw_set_instruct.c \
+	fdf_draw_line.c \
+	fdf_handle_events.c \
+	fdf_handle_event_translation.c \
+	fdf_handle_event_matrix_rotation.c \
+	fdf_handle_err.c
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
@@ -31,7 +34,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) fdf.h
 	@echo "\n$(BLU)Creating $(GRA)$(NAME) $(BLU)archive file ...$(NC)"
-	@ar rcs $(NAME) $(OBJS)
+	@ar -rcs $(NAME) $(OBJS)
 	@echo "\n$(GRN)Library created successfully ...\n$(NC)"
 
 %.o: %.c

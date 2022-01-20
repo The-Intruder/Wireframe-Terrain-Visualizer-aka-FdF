@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_handle_translation.c                           :+:      :+:    :+:   */
+/*   fdf_handle_event.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnaimi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,43 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
-
-/* -------------------------------------------------------------------------- */
-
-
-
-/* -------------------------------------------------------------------------- */
-
-void	handle_zoom_event(t_vars *vars, int key_code)
-{
-	if (key_code == KEY_PAD_ADD && vars->mapdata.zoom + 1 <= 50)
-		vars->mapdata.zoom += 1;
-	else if (key_code == KEY_PAD_SUB && vars->mapdata.zoom - 1 >= 1)
-		vars->mapdata.zoom -= 1;
-	if (vars->mapdata.iso_pro_bool)
-		vars->mapdata.y_offset = 50;
-}
-
-/* -------------------------------------------------------------------------- */
-
-void	handle_z_offset_event(t_vars *vars, int key_code)
-{
-	if (key_code == KEY_PAGE_UP && vars->mapdata.z_offset + 1 <= 255)
-		vars->mapdata.z_offset += 1;
-	else if (key_code == KEY_PAGE_DOWN && vars->mapdata.z_offset - 1 >= -255)
-		vars->mapdata.z_offset -= 1;
-}
-
-/* -------------------------------------------------------------------------- */
-
-void	handle_iso_pro(t_vars *vars)
-{
-	if (vars->mapdata.iso_pro_bool)
-		vars->mapdata.iso_pro_bool = FALSE;
-	else
-		vars->mapdata.iso_pro_bool = TRUE;
-}
+#include "fdf.h"
 
 /* -------------------------------------------------------------------------- */
 
@@ -68,6 +32,8 @@ int	handle_event(int key_code, t_vars *vars)
 		handle_iso_pro(vars);
 	else if (key_code == KEY_R)
 		set_default_params(vars);
+	else if (key_code == KEY_X || key_code == KEY_Y || key_code == KEY_Z)
+		rotate_map(vars, key_code);
 	else if (key_code == KEY_ESCAPE || key_code == 17)
 		exit(0);
 	reset_window(vars);
