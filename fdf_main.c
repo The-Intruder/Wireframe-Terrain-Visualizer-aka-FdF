@@ -90,7 +90,7 @@ void	set_default_params(t_vars *vars)
 {
 	vars->mapdata.zoom = 5;
 	vars->mapdata.x_offset = get_x_offset(vars);
-	vars->mapdata.y_offset = 50;
+	vars->mapdata.y_offset = 0;
 	vars->mapdata.z_offset = 1;
 	vars->mapdata.cl_offset = 0;
 	vars->mapdata.iso_pro_bool = TRUE;
@@ -98,6 +98,8 @@ void	set_default_params(t_vars *vars)
 	vars->mapdata.rot_y_bool = FALSE;
 	vars->mapdata.rot_z_bool = FALSE;
 	vars->mapdata.alpha_x = 0;
+	vars->mapdata.alpha_y = 0;
+	vars->mapdata.alpha_z = 0;
 }
 
 /* -------------------------------------------------------------------------- */

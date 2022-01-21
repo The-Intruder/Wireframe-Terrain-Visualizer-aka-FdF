@@ -62,16 +62,14 @@ static void	img_pixel_put(t_vars *vars, int x, int y, int color)
 
 static void	drawline_iter(t_vars *vars)
 {
-	while (1)
+	while (vars->linedraw.x0 != vars->linedraw.x1 \
+		|| vars->linedraw.y0 != vars->linedraw.y1)
 	{
 		img_pixel_put(vars, \
 			vars->linedraw.x0 + vars->mapdata.x_offset, \
 			vars->linedraw.y0 + vars->mapdata.y_offset, \
 			vars->linedraw.cl + vars->mapdata.cl_offset);
 		vars->linedraw.e2 = 2 * vars->linedraw.err;
-		if (vars->linedraw.x0 == vars->linedraw.x1 \
-			&& vars->linedraw.y0 == vars->linedraw.y1)
-			break ;
 		if (vars->linedraw.e2 >= vars->linedraw.dlta_y)
 		{
 			vars->linedraw.err += vars->linedraw.dlta_y;
@@ -90,10 +88,10 @@ static void	drawline_iter(t_vars *vars)
 void	drawline_calcul(t_vars *vars)
 {
 	apply_zoom(vars);
+	project_iso(vars);
 	handle_x_rotation(vars);
 	handle_y_rotation(vars);
 	handle_z_rotation(vars);
-	project_iso(vars);
 	vars->linedraw.dlta_x = abs(vars->linedraw.x1 - vars->linedraw.x0);
 	vars->linedraw.dlta_y = -abs(vars->linedraw.y1 - vars->linedraw.y0);
 	vars->linedraw.sx = -1;

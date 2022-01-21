@@ -84,7 +84,9 @@ typedef struct s_mapdata
 	int		rot_x_bool;
 	int		rot_y_bool;
 	int		rot_z_bool;
-	double	alpha_x;	
+	double	alpha_x;
+	double	alpha_y;
+	double	alpha_z;	
 }	t_mapdata;
 
 typedef struct s_mapfile

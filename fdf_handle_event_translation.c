@@ -30,8 +30,6 @@ void	handle_zoom_event(t_vars *vars, int key_code)
 		vars->mapdata.zoom += 1;
 	else if (key_code == KEY_PAD_SUB && vars->mapdata.zoom - 1 >= 1)
 		vars->mapdata.zoom -= 1;
-	if (vars->mapdata.iso_pro_bool)
-		vars->mapdata.y_offset = 50;
 }
 
 /* -------------------------------------------------------------------------- */
