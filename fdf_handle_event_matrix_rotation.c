@@ -21,26 +21,23 @@ static double to_rad(int deg)
 
 /* -------------------------------------------------------------------------- */
 
+static void	rotate_x(int *y, int *z, double alpha)
+{
+	int	prev_y;
+
+	prev_y = *y;
+	*y = prev_y * cos(alpha) + (*z) * sin(alpha);
+	*z = -prev_y * sin(alpha) + (*z) * cos(alpha);
+}
+
+/* -------------------------------------------------------------------------- */
+
 void	handle_x_rotation(t_vars *vars)
 {
-	if (vars->mapdata.rot_x_bool == TRUE)
+	if (vars->mapdata.rot_x_bool)
 	{
-		vars->linedraw.y0 =  vars->linedraw.y0 - (vars->matrix.max_y / 2);
-		vars->linedraw.y1 =  vars->linedraw.y1 - (vars->matrix.max_y / 2);
-		vars->linedraw.y0 = vars->linedraw.y0 * cos(vars->mapdata.alpha_x) - vars->linedraw.z0 * sin(vars->mapdata.alpha_x);
-		vars->linedraw.y1 = vars->linedraw.y1 * cos(vars->mapdata.alpha_x) - vars->linedraw.z1 * sin(vars->mapdata.alpha_x);
-		vars->linedraw.z0 = vars->linedraw.y0 * sin(vars->mapdata.alpha_x) + vars->linedraw.z0 * cos(vars->mapdata.alpha_x);
-		vars->linedraw.z1 = vars->linedraw.y1 * sin(vars->mapdata.alpha_x) + vars->linedraw.z1 * cos(vars->mapdata.alpha_x);
-		if (vars->mapdata.alpha_x <= to_rad(180))
-		{
-			vars->linedraw.z0 = abs(vars->linedraw.z0);
-			vars->linedraw.z1 = abs(vars->linedraw.z1);
-		}
-		else
-		{
-			vars->linedraw.z0 = -abs(vars->linedraw.z0);
-			vars->linedraw.z1 = -abs(vars->linedraw.z1);
-		}
+		rotate_x(&vars->linedraw.y0, &vars->linedraw.z0, vars->mapdata.alpha_x);
+		rotate_x(&vars->linedraw.y1, &vars->linedraw.z1, vars->mapdata.alpha_x);
 	}
 }
 
@@ -48,10 +45,8 @@ void	handle_x_rotation(t_vars *vars)
 
 void	handle_y_rotation(t_vars *vars)
 {
-	if (vars->mapdata.rot_y_bool == TRUE)
+	if (vars->mapdata.rot_y_bool)
 	{
-		vars->linedraw.x0 =  vars->linedraw.x0 - (vars->matrix.max_x / 2);
-		vars->linedraw.x1 =  vars->linedraw.x1 - (vars->matrix.max_x / 2);
 		vars->linedraw.x0 = vars->linedraw.x0 * cos(vars->mapdata.alpha_y) + vars->linedraw.z0 * sin(vars->mapdata.alpha_y);
 		vars->linedraw.x1 = vars->linedraw.x1 * cos(vars->mapdata.alpha_y) + vars->linedraw.z1 * sin(vars->mapdata.alpha_y);
 		vars->linedraw.z0 = vars->linedraw.x0 * -sin(vars->mapdata.alpha_y) + vars->linedraw.z0 * cos(vars->mapdata.alpha_y);
@@ -63,12 +58,28 @@ void	handle_y_rotation(t_vars *vars)
 
 void	handle_z_rotation(t_vars *vars)
 {
-	if (vars->mapdata.rot_z_bool == TRUE)
+	int		prev_x;
+	int		prev_y;
+	float	alpha_z;
+
+	alpha_z = vars->mapdata.alpha_z;
+	if (vars->mapdata.rot_z_bool)
 	{
-		vars->linedraw.x0 = vars->linedraw.x0 * cos(vars->mapdata.alpha_z) - vars->linedraw.y0 * sin(vars->mapdata.alpha_z);
-		vars->linedraw.x1 = vars->linedraw.x1 * cos(vars->mapdata.alpha_z) - vars->linedraw.y1 * sin(vars->mapdata.alpha_z);
-		vars->linedraw.y0 = vars->linedraw.x0 * cos(vars->mapdata.alpha_z) + vars->linedraw.y0 * sin(vars->mapdata.alpha_z);
-		vars->linedraw.y1 = vars->linedraw.x1 * cos(vars->mapdata.alpha_z) + vars->linedraw.y1 * sin(vars->mapdata.alpha_z);
+		if (!vars->mapdata.iso_pro_bool)
+		{
+			vars->linedraw.x0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
+			vars->linedraw.x1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
+		}
+		vars->linedraw.y0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
+		vars->linedraw.y1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
+		prev_x = vars->linedraw.x0;
+		prev_y = vars->linedraw.y0;
+		vars->linedraw.x0 = prev_x * cos(alpha_z) - prev_y * sin(alpha_z);
+		vars->linedraw.y0 = prev_x * sin(alpha_z) + prev_y * cos(alpha_z);
+		prev_x = vars->linedraw.x1;
+		prev_y = vars->linedraw.y1;
+		vars->linedraw.x1 = prev_x * cos(alpha_z) - prev_y * sin(alpha_z);
+		vars->linedraw.y1 = prev_x * sin(alpha_z) + prev_y * cos(alpha_z);
 	}
 }
 
@@ -80,19 +91,25 @@ int	rotate_map(t_vars *vars, int key_code)
 	{
 		vars->mapdata.rot_x_bool = TRUE;
 		if (vars->mapdata.alpha_x >= to_rad(360))
-			vars->mapdata.alpha_x = 0;
+			vars->mapdata.alpha_x -= to_rad(360);
 		else
-			vars->mapdata.alpha_x += to_rad(10);
+			vars->mapdata.alpha_x += to_rad(10); 
 	}
 	else if (key_code == KEY_Y)
 	{
 		vars->mapdata.rot_y_bool = TRUE;
-		vars->mapdata.alpha_y += to_rad(10);
+		if (vars->mapdata.alpha_y >= to_rad(360))
+			vars->mapdata.alpha_y -= to_rad(360);
+		else
+			vars->mapdata.alpha_y += to_rad(10);
 	}
 	else if (key_code == KEY_Z)
 	{
 		vars->mapdata.rot_z_bool = TRUE;
-		vars->mapdata.alpha_z += 0.2;
+		if (vars->mapdata.alpha_z >= to_rad(360))
+			vars->mapdata.alpha_z -= to_rad(360);
+		else
+			vars->mapdata.alpha_z += to_rad(10);
 	}
 	return(0);
 }

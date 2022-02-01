@@ -149,5 +149,6 @@ int		rotate_map(t_vars *vars, int key_code);
 void	handle_zoom_event(t_vars *vars, int key_code);
 void	handle_z_offset_event(t_vars *vars, int key_code);
 void	handle_iso_pro(t_vars *vars);
+int		trgb_to_int(char t, char r, char g, char b);
 
 #endif

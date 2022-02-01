@@ -69,7 +69,13 @@ static void	store_z_cl(t_vars *vars, char **splt_line, int x, int y)
 	else
 	{
 		vars->matrix.matrix_ptr[y][x][0] = ft_atoi(splt_line[x]);
-		vars->matrix.matrix_ptr[y][x][1] = 0x00FFFFFF;
+		// vars->matrix.matrix_ptr[y][x][1] = 0x00FFFFFF;
+		vars->matrix.matrix_ptr[y][x][1] = (0xD9534F + (vars->matrix.matrix_ptr[y][x][0] * 10));
+		printf("\n1.%X\n", vars->matrix.matrix_ptr[y][x][1]);
+		vars->matrix.matrix_ptr[y][x][1] <<= 8;
+		printf("2.%X\n", vars->matrix.matrix_ptr[y][x][1]);
+		vars->matrix.matrix_ptr[y][x][1] >>= 8;
+		printf("3.%X\n\n", vars->matrix.matrix_ptr[y][x][1]);
 	}
 }
 

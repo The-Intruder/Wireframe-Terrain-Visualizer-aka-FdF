@@ -35,22 +35,22 @@
  *	}
  */
 /* -------------------------------------------------------------------------- */
-/*
- *	int	trgb_to_int(t_uchar t, t_uchar r, t_uchar g, t_uchar b)
- *	{
- *		int	output;
- *	
- *		output = 0;
- *		output |= t;
- *		output <<= 8;
- *		output |= r;
- *		output <<= 8;
- *		output |= g;
- *		output <<= 8;
- *		output |= b;
- *		return (output);
- *	}
- */
+
+// int	trgb_to_int(char t, char r, char g, char b)
+// {
+// 	int	output;
+
+// 	output = 0;
+// 	output |= t;
+// 	output <<= 8;
+// 	output |= r;
+// 	output <<= 8;
+// 	output |= g;
+// 	output <<= 8;
+// 	output |= b;
+// 	return (output);
+// }
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -88,7 +88,7 @@ static int	get_x_offset(t_vars *vars)
 
 void	set_default_params(t_vars *vars)
 {
-	vars->mapdata.zoom = 5;
+	vars->mapdata.zoom = 2;
 	vars->mapdata.x_offset = get_x_offset(vars);
 	vars->mapdata.y_offset = 0;
 	vars->mapdata.z_offset = 1;
