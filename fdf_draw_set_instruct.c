@@ -85,9 +85,6 @@ void	draw_map(t_vars	*vars)
 		}
 		vars->loop.y++;
 	}
-	vars->mapdata.rot_x_bool = FALSE;
-	vars->mapdata.rot_y_bool = FALSE;
-	vars->mapdata.rot_z_bool = FALSE;
 }
 
 /* -------------------------------------------------------------------------- */

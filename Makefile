@@ -27,7 +27,7 @@ SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
-MAP := elem2.fdf
+MAP := t1.fdf
 
 
 all: $(NAME)
@@ -38,7 +38,7 @@ $(NAME): $(OBJS) fdf.h
 	@echo "\n$(GRN)Library created successfully ...\n$(NC)"
 
 %.o: %.c
-	@echo "\n$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...\n$(NC)"
+	@echo "\n$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...$(NC)"
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
 
 compile: re fdf.h
@@ -51,15 +51,15 @@ execute: compile fdf
 	@time ./fdf ./assets/test_maps/$(MAP)
 
 clean:
-	@echo "\n$(RED)Cleaning up Object files ...\n\n$(NC)"
+	@echo "\n$(RED)Cleaning up Object files ...\n$(NC)"
 	@rm -f *.o ./fdf_draw/*.o ./fdf_handle_events/*.o
 
 fclean: clean
-	@echo "$(RED)Cleaning up the $(GRA)$(NAME)$(RED) archive file ...\n\n$(NC)"
+	@echo "$(RED)Cleaning up the $(GRA)$(NAME)$(RED) archive file ...\n$(NC)"
 	@rm -f $(NAME)
 
 exclean: fclean
-	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n\n$(NC)"
+	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n$(NC)"
 	@rm -f fdf
 
 re: exclean all

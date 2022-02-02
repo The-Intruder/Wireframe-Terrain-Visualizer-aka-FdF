@@ -44,14 +44,6 @@ void	handle_z_offset_event(t_vars *vars, int key_code)
 
 /* -------------------------------------------------------------------------- */
 
-void	handle_iso_pro(t_vars *vars)
-{
-	if (vars->mapdata.iso_pro_bool)
-		vars->mapdata.iso_pro_bool = FALSE;
-	else
-		vars->mapdata.iso_pro_bool = TRUE;
-}
-
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */

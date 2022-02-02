@@ -16,20 +16,20 @@
 
 int	handle_event(int key_code, t_vars *vars)
 {
-	if (key_code == KEY_UP)
-		vars->mapdata.y_offset += 20 * vars->mapdata.zoom;
-	else if (key_code == KEY_DOWN)
-		vars->mapdata.y_offset -= 20 * vars->mapdata.zoom;
-	else if (key_code == KEY_LEFT)
-		vars->mapdata.x_offset += 20 * vars->mapdata.zoom;
+	if (key_code == KEY_LEFT)
+		vars->mapdata.x_offset -= vars->mapdata.zoom * 2;
 	else if (key_code == KEY_RIGHT)
-		vars->mapdata.x_offset -= 20 * vars->mapdata.zoom;
+		vars->mapdata.x_offset += vars->mapdata.zoom * 2;
+	else if (key_code == KEY_DOWN)
+		vars->mapdata.y_offset += vars->mapdata.zoom * 2;
+	else if (key_code == KEY_UP)
+		vars->mapdata.y_offset -= vars->mapdata.zoom * 2;
 	else if (key_code == KEY_PAD_ADD || key_code == KEY_PAD_SUB)
 		handle_zoom_event(vars, key_code);
 	else if (key_code == KEY_PAGE_UP || key_code == KEY_PAGE_DOWN)
 		handle_z_offset_event(vars, key_code);
 	else if (key_code == KEY_P)
-		handle_iso_pro(vars);
+		vars->mapdata.iso_pro_bool = !vars->mapdata.iso_pro_bool;
 	else if (key_code == KEY_R)
 		set_default_params(vars);
 	else if (key_code == KEY_X || key_code == KEY_Y || key_code == KEY_Z)

@@ -23,15 +23,18 @@ static void	project_iso(t_vars *vars)
 	{
 		old_x = vars->linedraw.x0;
 		old_y = vars->linedraw.y0;
-		vars->linedraw.x0 = (old_x - old_y) * cos(0.523599);
-		vars->linedraw.y0 = (vars->linedraw.z0 * -1) + (old_x + old_y) * \
-			sin(0.523599);
+		vars->linedraw.x0 = (old_x - old_y) * cos(0.5236);
+		vars->linedraw.y0 = (old_x + old_y) * sin(0.5236) - vars->linedraw.z0;
+
 		old_x = vars->linedraw.x1;
 		old_y = vars->linedraw.y1;
-		vars->linedraw.x1 = (old_x - old_y) * cos(0.523599);
-		vars->linedraw.y1 = (vars->linedraw.z1 * -1) + (old_x + old_y) * \
-			sin(0.523599);
+		vars->linedraw.x1 = (old_x - old_y) * cos(0.5236);
+		vars->linedraw.y1 = (old_x + old_y) * sin(0.5236) - vars->linedraw.z1;
 	}
+	vars->linedraw.x0 += vars->mapdata.x_offset;
+	vars->linedraw.x1 += vars->mapdata.x_offset;
+	vars->linedraw.y0 += vars->mapdata.y_offset;
+	vars->linedraw.y1 += vars->mapdata.y_offset;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -42,6 +45,7 @@ static void	apply_zoom(t_vars *vars)
 	vars->linedraw.x1 *= vars->mapdata.zoom;
 	vars->linedraw.y0 *= vars->mapdata.zoom;
 	vars->linedraw.y1 *= vars->mapdata.zoom;
+	//
 	vars->linedraw.y0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
 	vars->linedraw.y1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
 	vars->linedraw.x0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
@@ -71,8 +75,7 @@ static void	drawline_iter(t_vars *vars)
 		|| vars->linedraw.y0 != vars->linedraw.y1)
 	{
 		img_pixel_put(vars, \
-			vars->linedraw.x0 + vars->mapdata.x_offset, \
-			vars->linedraw.y0 + vars->mapdata.y_offset, \
+			vars->linedraw.x0, vars->linedraw.y0, \
 			vars->linedraw.cl);
 		vars->linedraw.e2 = 2 * vars->linedraw.err;
 		if (vars->linedraw.e2 >= vars->linedraw.dlta_y)
@@ -93,10 +96,10 @@ static void	drawline_iter(t_vars *vars)
 void	drawline_calcul(t_vars *vars)
 {
 	apply_zoom(vars);
-	project_iso(vars);
 	handle_x_rotation(vars);
 	handle_y_rotation(vars);
 	handle_z_rotation(vars);
+	project_iso(vars);
 	vars->linedraw.dlta_x = abs(vars->linedraw.x1 - vars->linedraw.x0);
 	vars->linedraw.dlta_y = -abs(vars->linedraw.y1 - vars->linedraw.y0);
 	vars->linedraw.sx = -1;

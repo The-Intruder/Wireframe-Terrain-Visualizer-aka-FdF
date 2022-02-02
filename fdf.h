@@ -81,9 +81,6 @@ typedef struct s_mapdata
 	int		z_offset;
 	int		cl_offset;
 	int		iso_pro_bool;
-	int		rot_x_bool;
-	int		rot_y_bool;
-	int		rot_z_bool;
 	double	alpha_x;
 	double	alpha_y;
 	double	alpha_z;	
