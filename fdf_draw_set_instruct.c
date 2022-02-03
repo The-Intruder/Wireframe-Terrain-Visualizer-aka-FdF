@@ -20,7 +20,7 @@ static void	assign_cl(t_vars *vars)
 		vars->matrix.matrix_ptr[vars->linedraw.y0][vars->linedraw.x0][1];
 	vars->linedraw.cl1 = \
 		vars->matrix.matrix_ptr[vars->linedraw.y1][vars->linedraw.x1][1];
-	if (vars->linedraw.cl0 > vars->linedraw.cl1)
+	if (vars->linedraw.z0 > vars->linedraw.z1)
 		vars->linedraw.cl = vars->linedraw.cl0;
 	else
 		vars->linedraw.cl = vars->linedraw.cl1;
@@ -43,6 +43,7 @@ static void	assign_z(t_vars *vars)
 static void	assign_y_z_cl_ndraw(t_vars *vars, int y0, int y1)
 {
 	vars->linedraw.y0 = y0;
+	vars->linedraw.org_y0 = y0;
 	vars->linedraw.y1 = y1;
 	assign_z(vars);
 	assign_cl(vars);
@@ -54,6 +55,7 @@ static void	assign_y_z_cl_ndraw(t_vars *vars, int y0, int y1)
 static void	assign_x(t_vars *vars, int x0, int x1)
 {
 	vars->linedraw.x0 = x0;
+	vars->linedraw.org_x0 = x0;
 	vars->linedraw.x1 = x1;
 }
 
@@ -61,11 +63,12 @@ static void	assign_x(t_vars *vars, int x0, int x1)
 
 void	draw_map(t_vars	*vars)
 {
-	vars->loop.y = 0;
-	while (vars->loop.y < vars->matrix.max_y - 1)
+	draw_bg(vars, WIN_WIDTH, 0x101010);
+	vars->loop.y = -1;
+	while (++vars->loop.y < vars->matrix.max_y - 1)
 	{
-		vars->loop.x = 0;
-		while (vars->loop.x < vars->matrix.max_x - 1)
+		vars->loop.x = -1;
+		while (++vars->loop.x < vars->matrix.max_x - 1)
 		{
 			assign_x(vars, vars->loop.x, vars->loop.x + 1);
 			assign_y_z_cl_ndraw(vars, vars->loop.y, vars->loop.y);
@@ -81,10 +84,9 @@ void	draw_map(t_vars	*vars)
 				assign_x(vars, vars->loop.x, vars->loop.x + 1);
 				assign_y_z_cl_ndraw(vars, vars->loop.y + 1, vars->loop.y + 1);
 			}
-			vars->loop.x++;
 		}
-		vars->loop.y++;
 	}
+	draw_bg(vars, 300, 0x252525);
 }
 
 /* -------------------------------------------------------------------------- */

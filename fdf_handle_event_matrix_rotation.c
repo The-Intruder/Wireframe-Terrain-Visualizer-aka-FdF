@@ -14,9 +14,9 @@
 
 /* -------------------------------------------------------------------------- */
 
-static double to_rad(int deg)
+static	double	to_rad(int deg)
 {
-    return deg * (M_PI / 180);
+	return (deg * (M_PI / 180));
 }
 
 /* -------------------------------------------------------------------------- */
@@ -48,7 +48,6 @@ void	handle_y_rotation(t_vars *vars)
 		vars->linedraw.z0 * sin(vars->mapdata.alpha_y);
 	vars->linedraw.z0 = prev_x * -sin(vars->mapdata.alpha_y) + \
 		vars->linedraw.z0 * cos(vars->mapdata.alpha_y);
-
 	prev_x = vars->linedraw.x1;
 	vars->linedraw.x1 = prev_x * cos(vars->mapdata.alpha_y) + \
 		vars->linedraw.z1 * sin(vars->mapdata.alpha_y);
@@ -85,24 +84,21 @@ int	rotate_map(t_vars *vars, int key_code)
 	{
 		if (vars->mapdata.alpha_x >= to_rad(360))
 			vars->mapdata.alpha_x -= to_rad(360);
-		else
-			vars->mapdata.alpha_x += to_rad(10);
+		vars->mapdata.alpha_x += to_rad(10);
 	}
 	else if (key_code == KEY_Y)
 	{
 		if (vars->mapdata.alpha_y >= to_rad(360))
 			vars->mapdata.alpha_y -= to_rad(360);
-		else
-			vars->mapdata.alpha_y += to_rad(10);
+		vars->mapdata.alpha_y += to_rad(10);
 	}
 	else if (key_code == KEY_Z)
 	{
 		if (vars->mapdata.alpha_z >= to_rad(360))
 			vars->mapdata.alpha_z -= to_rad(360);
-		else
-			vars->mapdata.alpha_z += to_rad(10);
+		vars->mapdata.alpha_z += to_rad(10);
 	}
-	return(0);
+	return (0);
 }
 
 /* -------------------------------------------------------------------------- */

@@ -51,7 +51,6 @@
 // 	return (output);
 // }
 
-
 /* -------------------------------------------------------------------------- */
 
 static void	setup_img(t_vars *vars)
@@ -81,18 +80,17 @@ static int	get_x_offset(t_vars *vars)
 	int	diameter;
 
 	diameter = sqrt(pow(vars->matrix.max_x, 2) + pow(vars->matrix.max_y, 2));
-	return ((diameter / 2) + (WIN_WIDTH / 2) - (diameter / 2));
+	return (((diameter / 2) + (WIN_WIDTH / 2) - (diameter / 2)) + 250);
 }
 
 /* -------------------------------------------------------------------------- */
 
 void	set_default_params(t_vars *vars)
 {
-	vars->mapdata.zoom = (WIN_WIDTH / (vars->matrix.max_x * 2));
+	vars->mapdata.zoom = 20;
 	vars->mapdata.x_offset = get_x_offset(vars);
-	vars->mapdata.y_offset = 0;
+	vars->mapdata.y_offset = (WIN_HEIGHT - vars->matrix.max_y) / 2;
 	vars->mapdata.z_offset = 1;
-	vars->mapdata.cl_offset = 0;
 	vars->mapdata.iso_pro_bool = TRUE;
 	vars->mapdata.alpha_x = 0;
 	vars->mapdata.alpha_y = 0;
@@ -114,13 +112,14 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 4)
 		return (handle_err(6), 1);
 	init_mlx_params(&vars);
 	alloc_store_matrix(argv[1], &vars);
 	set_default_params(&vars);
 	draw_map(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
+	write_legend(&vars);
 	mlx_hook(vars.win, KEYPRESS, NOEVENTMASK, handle_event, &vars);
 	mlx_hook(vars.win, 17, NOEVENTMASK, xclose, &vars);
 	mlx_loop(vars.mlx);

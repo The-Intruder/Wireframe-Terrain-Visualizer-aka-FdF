@@ -26,7 +26,7 @@ int	xclose(void *v_vars)
 
 void	handle_zoom_event(t_vars *vars, int key_code)
 {
-	if (key_code == KEY_PAD_ADD && vars->mapdata.zoom + 1 <= 50)
+	if (key_code == KEY_PAD_ADD && vars->mapdata.zoom + 1 <= 100)
 		vars->mapdata.zoom += 1;
 	else if (key_code == KEY_PAD_SUB && vars->mapdata.zoom - 1 >= 1)
 		vars->mapdata.zoom -= 1;
@@ -36,9 +36,9 @@ void	handle_zoom_event(t_vars *vars, int key_code)
 
 void	handle_z_offset_event(t_vars *vars, int key_code)
 {
-	if (key_code == KEY_PAGE_UP && vars->mapdata.z_offset + 1 <= 255)
+	if (key_code == KEY_PAGE_UP && vars->mapdata.z_offset + 1 <= 100)
 		vars->mapdata.z_offset += 1;
-	else if (key_code == KEY_PAGE_DOWN && vars->mapdata.z_offset - 1 >= -255)
+	else if (key_code == KEY_PAGE_DOWN && vars->mapdata.z_offset - 1 >= -100)
 		vars->mapdata.z_offset -= 1;
 }
 

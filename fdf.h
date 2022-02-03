@@ -38,6 +38,7 @@
 # define KEY_DOWN		125
 # define KEY_RIGHT		124
 # define KEY_LEFT		123
+# define KEY_C			8
 # define KEY_R			15
 # define KEY_P			35
 # define KEY_X			7
@@ -62,6 +63,8 @@ typedef struct s_linedraw
 	int	dlta_y;
 	int	err;
 	int	e2;
+	int	org_x0;
+	int	org_y0;
 	int	x0;
 	int	y0;
 	int	cl0;
@@ -79,7 +82,6 @@ typedef struct s_mapdata
 	int		x_offset;
 	int		y_offset;
 	int		z_offset;
-	int		cl_offset;
 	int		iso_pro_bool;
 	double	alpha_x;
 	double	alpha_y;
@@ -147,5 +149,8 @@ void	handle_zoom_event(t_vars *vars, int key_code);
 void	handle_z_offset_event(t_vars *vars, int key_code);
 void	handle_iso_pro(t_vars *vars);
 int		trgb_to_int(char t, char r, char g, char b);
+void	img_pixel_put(t_vars *vars, int x, int y, int color);
+void	draw_bg(t_vars *vars, int width, int color);
+void	write_legend(t_vars *vars);
 
 #endif

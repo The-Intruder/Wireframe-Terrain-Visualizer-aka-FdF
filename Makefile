@@ -23,7 +23,8 @@ SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
 	fdf_handle_events.c \
 	fdf_handle_event_translation.c \
 	fdf_handle_event_matrix_rotation.c \
-	fdf_handle_err.c
+	fdf_handle_err.c \
+	print_controls.c
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a

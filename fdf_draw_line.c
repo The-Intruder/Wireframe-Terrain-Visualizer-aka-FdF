@@ -45,16 +45,15 @@ static void	apply_zoom(t_vars *vars)
 	vars->linedraw.x1 *= vars->mapdata.zoom;
 	vars->linedraw.y0 *= vars->mapdata.zoom;
 	vars->linedraw.y1 *= vars->mapdata.zoom;
-	//
 	vars->linedraw.y0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
 	vars->linedraw.y1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
-	vars->linedraw.x0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
-	vars->linedraw.x1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
+	vars->linedraw.x0 -= (vars->matrix.max_x * vars->mapdata.zoom) / 2;
+	vars->linedraw.x1 -= (vars->matrix.max_x * vars->mapdata.zoom) / 2;
 }
 
 /* -------------------------------------------------------------------------- */
 
-static void	img_pixel_put(t_vars *vars, int x, int y, int color)
+void	img_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*pxl_ptr;
 
@@ -75,8 +74,7 @@ static void	drawline_iter(t_vars *vars)
 		|| vars->linedraw.y0 != vars->linedraw.y1)
 	{
 		img_pixel_put(vars, \
-			vars->linedraw.x0, vars->linedraw.y0, \
-			vars->linedraw.cl);
+			vars->linedraw.x0, vars->linedraw.y0, vars->linedraw.cl);
 		vars->linedraw.e2 = 2 * vars->linedraw.err;
 		if (vars->linedraw.e2 >= vars->linedraw.dlta_y)
 		{
