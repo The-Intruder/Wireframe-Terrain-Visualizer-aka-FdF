@@ -13,54 +13,6 @@
 #include "fdf.h"
 
 /* -------------------------------------------------------------------------- */
-/*
- *	void	print_matrix(t_matrix *matrix)
- *	{
- *		int	y;
- *		int	x;
- *	
- *		y = 0;
- *		while (y < matrix->max_y)
- *		{
- *			x = 0;
- *			while (x < matrix->max_x)
- *			{
- *				printf("%d-%X\t", matrix->matrix_ptr[y][x][0], \
- *					matrix->matrix_ptr[y][x][1]);
- *				x++;
- *			}
- *			putchar('\n');
- *			y++;
- *		}
- *	}
- */
-/* -------------------------------------------------------------------------- */
-
-// int	trgb_to_int(char t, char r, char g, char b)
-// {
-// 	int	output;
-
-// 	output = 0;
-// 	output |= t;
-// 	output <<= 8;
-// 	output |= r;
-// 	output <<= 8;
-// 	output |= g;
-// 	output <<= 8;
-// 	output |= b;
-// 	return (output);
-// }
-
-/* -------------------------------------------------------------------------- */
-
-static void	setup_img(t_vars *vars)
-{
-	vars->img.img_ptr = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
-	vars->img.addr = mlx_get_data_addr(vars->img.img_ptr, \
-		&vars->img.bits_per_pixel, &vars->img.line_length, &vars->img.endian);
-}
-
-/* -------------------------------------------------------------------------- */
 
 static	void	init_mlx_params(t_vars *vars)
 {
@@ -70,7 +22,9 @@ static	void	init_mlx_params(t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	if (!vars->win)
 		return (free(vars->mlx), handle_err(8));
-	setup_img(vars);
+	vars->img.img_ptr = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
+	vars->img.addr = mlx_get_data_addr(vars->img.img_ptr, \
+		&vars->img.bits_per_pixel, &vars->img.line_length, &vars->img.endian);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -87,10 +41,11 @@ static int	get_x_offset(t_vars *vars)
 
 void	set_default_params(t_vars *vars)
 {
-	vars->mapdata.zoom = 20;
+	vars->mapdata.zoom = 15;
 	vars->mapdata.x_offset = get_x_offset(vars);
 	vars->mapdata.y_offset = (WIN_HEIGHT - vars->matrix.max_y) / 2;
 	vars->mapdata.z_offset = 1;
+	vars->mapdata.cl_offset = 128;
 	vars->mapdata.iso_pro_bool = TRUE;
 	vars->mapdata.alpha_x = 0;
 	vars->mapdata.alpha_y = 0;
@@ -103,7 +58,9 @@ void	reset_window(t_vars *vars)
 {
 	mlx_clear_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img.img_ptr);
-	setup_img(vars);
+	vars->img.img_ptr = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
+	vars->img.addr = mlx_get_data_addr(vars->img.img_ptr, \
+		&vars->img.bits_per_pixel, &vars->img.line_length, &vars->img.endian);
 }
 
 /* -------------------------------------------------------------------------- */

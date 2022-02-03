@@ -24,11 +24,12 @@ SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
 	fdf_handle_event_translation.c \
 	fdf_handle_event_matrix_rotation.c \
 	fdf_handle_err.c \
-	print_controls.c
+	print_legend_1st.c \
+	print_legend_2nd.c
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
-MAP := t1.fdf
+MAP := 42.fd
 
 
 all: $(NAME)
@@ -39,7 +40,7 @@ $(NAME): $(OBJS) fdf.h
 	@echo "\n$(GRN)Library created successfully ...\n$(NC)"
 
 %.o: %.c
-	@echo "\n$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...$(NC)"
+	@echo "$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...$(NC)\n"
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
 
 compile: re fdf.h
@@ -48,8 +49,9 @@ compile: re fdf.h
 	@make fclean
 
 execute: compile fdf
-	@echo "$(CYN)Loading X-Window ...$(NC)\n"
-	@time ./fdf ./assets/test_maps/$(MAP)
+	@echo "\n$(CYN)Loading X-Window ...$(NC)\n"
+	@./fdf ./assets/test_maps/$(MAP)
+
 
 clean:
 	@echo "\n$(RED)Cleaning up Object files ...\n$(NC)"
@@ -60,7 +62,7 @@ fclean: clean
 	@rm -f $(NAME)
 
 exclean: fclean
-	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n$(NC)"
+	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n\n$(NC)"
 	@rm -f fdf
 
 re: exclean all

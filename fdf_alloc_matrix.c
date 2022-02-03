@@ -14,7 +14,7 @@
 
 /* -------------------------------------------------------------------------- */
 
-static void	deallocate_data(t_matrix *matrix)
+void	deallocate_data(t_matrix *matrix)
 {
 	int	y;
 	int	x;
@@ -50,8 +50,9 @@ static int	count_rows(char *map, int *line_length)
 		return (handle_err(5), 0);
 	row_count = 0;
 	line = get_next_line(fd, 1);
-	if (line)
-		*line_length = ft_strlen(line);
+	if (!line)
+		return (0);
+	*line_length = ft_strlen(line);
 	while (line)
 	{
 		++row_count;
@@ -70,7 +71,7 @@ static int	count_cols(char *map)
 {
 	int		col_count;
 	char	*line;
-	void	*dummy_ptr;
+	char	**dummy_ptr;
 	char	**spltd_line;
 	int		fd;
 
@@ -84,10 +85,12 @@ static int	count_cols(char *map)
 	spltd_line = ft_split(line, ' ');
 	dummy_ptr = spltd_line;
 	free(line);
-	while (*spltd_line && *(spltd_line++)[0] != '\n')
+	while (*spltd_line && *(spltd_line)[0] != '\n')
+	{
 		++col_count;
-	close(fd);
-	return (free(dummy_ptr), col_count);
+		free(*(spltd_line++));
+	}
+	return (close(fd), free(dummy_ptr), col_count);
 }
 
 /* -------------------------------------------------------------------------- */

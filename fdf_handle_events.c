@@ -35,7 +35,10 @@ int	handle_event(int key_code, t_vars *vars)
 	else if (key_code == KEY_X || key_code == KEY_Y || key_code == KEY_Z)
 		rotate_map(vars, key_code);
 	else if (key_code == KEY_ESCAPE || key_code == 17)
+	{
+		//sleep(120);
 		exit(0);
+	}
 	reset_window(vars);
 	draw_map(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);

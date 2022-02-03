@@ -58,6 +58,7 @@ static void	free_splt_str(char **splt_str)
 static void	store_z_cl(t_vars *vars, char **splt_line, int x, int y)
 {
 	char	**z_cl;
+	int		z;
 
 	if (ft_strchr(splt_line[x], ','))
 	{
@@ -69,7 +70,8 @@ static void	store_z_cl(t_vars *vars, char **splt_line, int x, int y)
 	else
 	{
 		vars->matrix.matrix_ptr[y][x][0] = ft_atoi(splt_line[x]);
-		vars->matrix.matrix_ptr[y][x][1] = 0X00FFFFFF;
+		z = vars->matrix.matrix_ptr[y][x][0];
+		vars->matrix.matrix_ptr[y][x][1] = 0xFFFFFF;
 	}
 }
 

@@ -25,7 +25,6 @@ static void	project_iso(t_vars *vars)
 		old_y = vars->linedraw.y0;
 		vars->linedraw.x0 = (old_x - old_y) * cos(0.5236);
 		vars->linedraw.y0 = (old_x + old_y) * sin(0.5236) - vars->linedraw.z0;
-
 		old_x = vars->linedraw.x1;
 		old_y = vars->linedraw.y1;
 		vars->linedraw.x1 = (old_x - old_y) * cos(0.5236);
@@ -41,10 +40,10 @@ static void	project_iso(t_vars *vars)
 
 static void	apply_zoom(t_vars *vars)
 {
-	vars->linedraw.x0 *= vars->mapdata.zoom;
-	vars->linedraw.x1 *= vars->mapdata.zoom;
-	vars->linedraw.y0 *= vars->mapdata.zoom;
-	vars->linedraw.y1 *= vars->mapdata.zoom;
+	vars->linedraw.x0 *= abs(vars->mapdata.zoom);
+	vars->linedraw.x1 *= abs(vars->mapdata.zoom);
+	vars->linedraw.y0 *= abs(vars->mapdata.zoom);
+	vars->linedraw.y1 *= abs(vars->mapdata.zoom);
 	vars->linedraw.y0 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
 	vars->linedraw.y1 -= (vars->matrix.max_y * vars->mapdata.zoom) / 2;
 	vars->linedraw.x0 -= (vars->matrix.max_x * vars->mapdata.zoom) / 2;
