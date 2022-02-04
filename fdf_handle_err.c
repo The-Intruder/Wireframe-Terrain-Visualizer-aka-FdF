@@ -50,6 +50,6 @@ void	handle_err(int err_code)
 			print_colored_error("Invalid map\n\n", BLD);
 	}
 	ft_putchar_fd('\n', 2);
-	sleep(120);
+	// sleep(30);
 	exit(err_code);
 }

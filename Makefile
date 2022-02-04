@@ -31,6 +31,12 @@ OBJS := $(SRCS:%.c=%.o)
 NAME := libfdf.a
 MAP := 42.fdf
 
+VAL_PARAMS := --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --verbose \
+         --log-file=valgrind-out.txt \
+
 
 all: $(NAME)
 
@@ -45,14 +51,16 @@ $(NAME): $(OBJS) fdf.h
 
 compile: re fdf.h
 	@echo "\n$(YEL)Compiling the $(GRA)fdf_main.c $(YEL)...\n$(NC)"
-	@$(CC) ${CC_FLAGS} $(CC_OPTS) -o fdf fdf_main.c
+	@$(CC) ${CC_FLAGS} -g -Og -std=c11 $(CC_OPTS) -o fdf fdf_main.c
 	@make fclean
 
 execute: compile fdf
 	@echo "\n$(CYN)Loading X-Window ...$(NC)\n"
 	@./fdf ./assets/test_maps/$(MAP)
 
-
+debug: fdf
+	@echo "\n$(CYN)Debugging with $(NC)$(GRA)VALGRIND $(NC)$(CYN)...$(NC)\n"
+	@valgring $(VAL_PARAMS) 
 clean:
 	@echo "\n$(RED)Cleaning up Object files ...\n$(NC)"
 	@rm -f *.o ./fdf_draw/*.o ./fdf_handle_events/*.o

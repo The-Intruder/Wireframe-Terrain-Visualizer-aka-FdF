@@ -47,9 +47,9 @@ int	main(int argc, char **argv)
 	t_vars	vars;
 	char	*ptr;
 
-	ptr = (char *)malloc(6);
+	ptr = (char *)malloc(12);
 	if (argc != 2 && argc != 4)
-		return (handle_err(6), 1);
+		return (handle_err(6), 0);
 	init_mlx_params(&vars);
 	alloc_store_matrix(argv[1], &vars);
 	set_default_params(&vars, argc, argv);
