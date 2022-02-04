@@ -44,7 +44,6 @@ graphical maps as shown in _Figure 1.2_
 0  0  0  0  0  0 10 10  0  0  0 10 10 10 10 10 10  0  0
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-
 ```
 _**Figure 1.1**_
 <br />
@@ -59,7 +58,7 @@ some altitude manipulation, as well as toggling between different projections
 _(we'll see what that means in a sec)_, and some other bonus(es) from your 
 choice.
 
-# Ummm, what the F%!$ is that S%?£ in Figure 1.1
+## Ummm, what the F%!$ is that S%?£ in Figure 1.1
 
 Behold the power of confusion _(not really)_.
 
