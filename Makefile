@@ -29,7 +29,7 @@ SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
 OBJS := $(SRCS:%.c=%.o)
 
 NAME := libfdf.a
-MAP := 42.fd
+MAP := 42.fdf
 
 
 all: $(NAME)
@@ -44,7 +44,7 @@ $(NAME): $(OBJS) fdf.h
 	@$(CC) $(CC_FLAGS) -o $@ -c $<
 
 compile: re fdf.h
-	@echo "\n$(YEL)Compiling the $(GRA)fdf_main.c $(YEL)...\n\n$(NC)"
+	@echo "\n$(YEL)Compiling the $(GRA)fdf_main.c $(YEL)...\n$(NC)"
 	@$(CC) ${CC_FLAGS} $(CC_OPTS) -o fdf fdf_main.c
 	@make fclean
 

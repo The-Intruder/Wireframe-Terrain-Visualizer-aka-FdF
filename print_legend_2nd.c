@@ -92,6 +92,8 @@ void	write_legend(t_vars *vars)
 		"_________");
 	print_directions(25, vars);
 	print_misc_controls(25, vars);
+	mlx_string_put(vars->mlx, vars->win, 40, 25 * 29, 0xFFFFFF, \
+		"Exit Program:   ESC");
 }
 
 /* -------------------------------------------------------------------------- */

@@ -38,7 +38,8 @@ void	handle_z_offset_event(t_vars *vars, int key_code)
 {
 	if (key_code == KEY_PAGE_UP && vars->mapdata.z_offset + 1 <= 2147483647)
 		vars->mapdata.z_offset += 1;
-	else if (key_code == KEY_PAGE_DOWN && vars->mapdata.z_offset - 1 >= -2147483648)
+	else if (key_code == KEY_PAGE_DOWN \
+		&& vars->mapdata.z_offset - 1 >= -2147483648)
 		vars->mapdata.z_offset -= 1;
 }
 

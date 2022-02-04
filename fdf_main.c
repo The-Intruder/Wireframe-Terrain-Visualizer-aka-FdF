@@ -28,30 +28,7 @@ static	void	init_mlx_params(t_vars *vars)
 }
 
 /* -------------------------------------------------------------------------- */
-
-static int	get_x_offset(t_vars *vars)
-{
-	int	diameter;
-
-	diameter = sqrt(pow(vars->matrix.max_x, 2) + pow(vars->matrix.max_y, 2));
-	return (((diameter / 2) + (WIN_WIDTH / 2) - (diameter / 2)) + 250);
-}
-
 /* -------------------------------------------------------------------------- */
-
-void	set_default_params(t_vars *vars)
-{
-	vars->mapdata.zoom = 15;
-	vars->mapdata.x_offset = get_x_offset(vars);
-	vars->mapdata.y_offset = (WIN_HEIGHT - vars->matrix.max_y) / 2;
-	vars->mapdata.z_offset = 1;
-	vars->mapdata.cl_offset = 128;
-	vars->mapdata.iso_pro_bool = TRUE;
-	vars->mapdata.alpha_x = 0;
-	vars->mapdata.alpha_y = 0;
-	vars->mapdata.alpha_z = 0;
-}
-
 /* -------------------------------------------------------------------------- */
 
 void	reset_window(t_vars *vars)
@@ -68,12 +45,14 @@ void	reset_window(t_vars *vars)
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
+	char	*ptr;
 
+	ptr = (char *)malloc(6);
 	if (argc != 2 && argc != 4)
 		return (handle_err(6), 1);
 	init_mlx_params(&vars);
 	alloc_store_matrix(argv[1], &vars);
-	set_default_params(&vars);
+	set_default_params(&vars, argc, argv);
 	draw_map(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
 	write_legend(&vars);

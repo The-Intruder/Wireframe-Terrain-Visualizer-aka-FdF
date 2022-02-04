@@ -14,8 +14,8 @@
 ```
 # Preface
 
-> !(I really enjoyed making this project, and it did not give me headache 
-AT ALL) _- Ameen_
+> !(I really enjoyed making this project, and it did not give me headache AT ALL)
+> -_Ameen_
 
 Nonetheless, this project is quite stressfull, specially for someone who doesn't
 remember the basics of Trigonometry _(or math in general)_, so if you REALLY 
@@ -24,7 +24,7 @@ yourself for some serious headache, unless you're good with VERY BASIC math.
 
 _No seriouslly though, it is not that hard, I'm just really bad when it comes
 to maths, so please don't be discouraged, it is really worth your while, 
-especially when **good** results start to show up. :)_
+especially when **good** results start to show up._ :)
 
 # Projet Description
 

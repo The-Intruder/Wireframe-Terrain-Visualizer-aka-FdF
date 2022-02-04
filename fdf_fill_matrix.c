@@ -63,8 +63,13 @@ static void	store_z_cl(t_vars *vars, char **splt_line, int x, int y)
 	if (ft_strchr(splt_line[x], ','))
 	{
 		z_cl = ft_split(splt_line[x], ',');
+		if (!z_cl[0] || !z_cl[1] || !ft_isdigit(*z_cl[1]))
+			return (handle_err(10));
 		vars->matrix.matrix_ptr[y][x][0] = ft_atoi(z_cl[0]);
-		vars->matrix.matrix_ptr[y][x][1] = ft_hextoi(z_cl[1]);
+		if (z_cl[1][0] == '0' && ft_tolower(z_cl[1][1]) == 'x')
+			vars->matrix.matrix_ptr[y][x][1] = ft_hextoi(z_cl[1]);
+		else
+			vars->matrix.matrix_ptr[y][x][1] = ft_atoi(z_cl[1]);
 		free_splt_str(z_cl);
 	}
 	else
@@ -73,6 +78,18 @@ static void	store_z_cl(t_vars *vars, char **splt_line, int x, int y)
 		z = vars->matrix.matrix_ptr[y][x][0];
 		vars->matrix.matrix_ptr[y][x][1] = 0xFFFFFF;
 	}
+}
+
+/* -------------------------------------------------------------------------- */
+
+static int	check_cols(char **spltd_line)
+{
+	int	i;
+
+	i = 0;
+	while (spltd_line[i] && *spltd_line[i] != '\n')
+		i++;
+	return (i);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -88,6 +105,8 @@ static void	iter_matr(t_vars *vars)
 	{
 		x = 0;
 		splt_line = ft_split(vars->mapfile.line, ' ');
+		if (check_cols(splt_line) != vars->matrix.max_x)
+			return (handle_err(10));
 		while (x < vars->matrix.max_x && splt_line[x] && *splt_line[x] != '\n')
 			store_z_cl(vars, splt_line, x++, y);
 		free_splt_str(splt_line);
