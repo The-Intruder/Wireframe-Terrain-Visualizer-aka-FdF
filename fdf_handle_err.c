@@ -35,11 +35,17 @@ void	handle_err(int err_code)
 	else if (err_code == 5)
 		print_colored_error("No such File\n", BLD);
 	else if (err_code == 6)
-		print_colored_error("Invalid argc\n", BLD);
+		print_colored_error("Invalid argument count\n", BLD);
 	else if (err_code == 7)
-		print_colored_error("mlx_ptr allocation failure\n", BLD);
+		print_colored_error("MLX_PTR allocation failure\n", BLD);
 	else if (err_code == 8)
-		print_colored_error("win_ptr allocation failure\n", BLD);
+		print_colored_error("WIN_PTR allocation failure\n", BLD);
+	else if (err_code == 9)
+		print_colored_error("Incorrect zoom argument\n", BLD);
+	else if (err_code == 10)
+		print_colored_error("Incorrect altitude argument\n", BLD);
+	else if (err_code == 11)
+		print_colored_error("Invalid map\n", BLD);
 	ft_putchar_fd('\n', 2);
 	exit(err_code);
 }
