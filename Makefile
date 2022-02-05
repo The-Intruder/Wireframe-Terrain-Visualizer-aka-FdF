@@ -7,74 +7,93 @@ GRN := \033[0;32;1m
 MGN := \033[0;35;1m
 BLU := \033[0;34;1m
 
+SRCS_M_DIR := ./srcs_m/
+SRCS_M_LST := drawing_algo.c \
+	drawing_instructions.c \
+	event_handling_1st.c \
+	event_handling_2nd.c \
+	event_handling_3rd.c \
+	matrix_allocation.c \
+	matrix_initialization.c \
+	sidebar_1st.c \
+	sidebar_2nd.c \
+	error_handling.c
+SRCS_M := ${addprefix ${SRCS_B_DIR}, ${SRCS_B_LST}}
+
+SRCS_B_DIR := ./srcs_b/
+SRCS_B_LST := drawing_algo_bonus.c \
+	drawing_instructions_bonus.c \
+	event_handling_1st_bonus.c \
+	event_handling_2nd_bonus.c \
+	event_handling_3rd_bonus.c \
+	matrix_allocation_bonus.c \
+	matrix_initialization_bonus.c \
+	sidebar_1st_bonus.c \
+	sidebar_2nd_bonus.c \
+	error_handling_bonus.c
+SRCS_B := ${addprefix ${SRCS_B_DIR}, ${SRCS_B_LST}}
+
+
+OBJS_DIR := ./objs/
+OBJS_M_LST := ${patsubst %.c, %.o, ${SRCS_M_LST}}
+OBJS_M := ${addprefix ${OBJS_DIR}, ${OBJS_M_LST}}
+OBJS_B_LST := ${patsubst %.c, %.o, ${SRCS_B_LST}}
+OBJS_B := ${addprefix ${OBJS_DIR}, ${OBJS_B_LST}}
+
 CC := gcc
 CC_FLAGS := -Wall -Wextra -Werror
 CC_OPTS := -I /usr/local/include \
 	-L/usr/local/lib/ -lmlx \
 	-framework OpenGL -framework AppKit \
-	./assets/get_next_line/get_next_line.c \
-	./assets/get_next_line/get_next_line_utils.c \
-	-L./assets/libft -lft \
+	./libs/get_next_line/get_next_line.c \
+	./libs/get_next_line/get_next_line_utils.c \
+	-L./libs/libft -lft \
 	-L. -lfdf
 
-SRCS := fdf_alloc_matrix.c fdf_fill_matrix.c \
-	fdf_draw_set_instruct.c \
-	fdf_draw_line.c \
-	fdf_handle_events.c \
-	fdf_handle_event_translation.c \
-	fdf_handle_event_matrix_rotation.c \
-	fdf_handle_err.c \
-	print_legend_1st.c \
-	print_legend_2nd.c
-OBJS := $(SRCS:%.c=%.o)
-
 NAME := libfdf.a
-MAP := 42.fdf
+MAP := pyramide.fdf
 
-VAL_PARAMS := --leak-check=full \
-         --show-leak-kinds=all \
-         --track-origins=yes \
-         --verbose \
-         --log-file=valgrind-out.txt \
+IS_BONUS := false
 
+all: fclean ${NAME}
 
-all: $(NAME)
+${NAME}: ${OBJS_M} ${SRCS_M_DIR}fdf.h
+	@echo "\n${BLU}Creating ${GRA}${NAME} ${BLU}archive file ...${NC}"
+	@ar -rcs ${NAME} ${OBJS_B}
+	@echo "\n${GRN}Library created successfully ...\n${NC}"
 
-$(NAME): $(OBJS) fdf.h
-	@echo "\n$(BLU)Creating $(GRA)$(NAME) $(BLU)archive file ...$(NC)"
-	@ar -rcs $(NAME) $(OBJS)
-	@echo "\n$(GRN)Library created successfully ...\n$(NC)"
+${OBJS_DIR}%.o: ${SRCS_B_DIR}%.c
+	@echo "${MGN}Creating ${GRA}$@ ${MGN}file from ${GRA}$< ${MGN}file ...${NC}\n"
+	@${CC} ${CC_FLAGS} -c $< -o $@
 
-%.o: %.c
-	@echo "$(MGN)Creating Object file from $(GRA)$< $(MGN)file ...$(NC)\n"
-	@$(CC) $(CC_FLAGS) -o $@ -c $<
-
-compile: re fdf.h
-	@echo "\n$(YEL)Compiling the $(GRA)fdf_main.c $(YEL)...\n$(NC)"
-	@$(CC) ${CC_FLAGS} -g -Og -std=c11 $(CC_OPTS) -o fdf fdf_main.c
-	@make fclean
-
-execute: compile fdf
-	@echo "\n$(CYN)Loading X-Window ...$(NC)\n"
-	@./fdf ./assets/test_maps/$(MAP)
-
-debug: fdf
-	@echo "\n$(CYN)Debugging with $(NC)$(GRA)VALGRIND $(NC)$(CYN)...$(NC)\n"
-	@valgring $(VAL_PARAMS) 
 clean:
-	@echo "\n$(RED)Cleaning up Object files ...\n$(NC)"
-	@rm -f *.o ./fdf_draw/*.o ./fdf_handle_events/*.o
+	@echo "\n${RED}Cleaning up Object files ...\n${NC}"
+	@rm -f ${OBJS_DIR}*.o
 
 fclean: clean
-	@echo "$(RED)Cleaning up the $(GRA)$(NAME)$(RED) archive file ...\n$(NC)"
-	@rm -f $(NAME)
-
-exclean: fclean
-	@echo "$(RED)Cleaning up the $(GRA)fdf$(RED) executable file ...\n\n$(NC)"
-	@rm -f fdf
+	@echo "${RED}Cleaning up the ${GRA}${NAME}${RED} archive file ...\n${NC}"
+	@rm -f ${NAME}
 
 re: exclean all
 
-bonus: re
+bonus: ${OBJS_B}
 
-.PHONY: all clean fclean re compile execute exclean bonus
+# DESTROY WIN & IMG BEFORE PROGRAM EXIT
+
+# compile: re ${SRCS_B_DIR}fdf.h ${SRCS_B_DIR}fdf.c
+# 	@echo "\n${YEL}Compiling the ${GRA}${SRCS_B_DIR}fdf.c ${YEL}...\n${NC}"
+# 	@${CC} ${CC_FLAGS} ${CC_OPTS} -o fdf ${SRCS_B_DIR}fdf.c
+# 	@make fclean
+
+# execute: compile fdf
+# 	@echo "\n${CYN}Loading X-Window ...${NC}\n"
+# 	@time ./fdf ./test_maps/${MAP}
+
+# exclean: fclean
+# 	@echo "${RED}Cleaning up the ${GRA}fdf${RED} executable file ...\n\n${NC}"
+# 	@rm -f fdf
+
+.PHONY: all clean fclean re bonus
+# compile execute exclean
+
+
