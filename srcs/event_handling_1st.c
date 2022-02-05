@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 /* -------------------------------------------------------------------------- */
 
@@ -19,7 +19,7 @@ static int	get_x_offset(t_vars *vars)
 	int	diameter;
 
 	diameter = sqrt(pow(vars->matrix.max_x, 2) + pow(vars->matrix.max_y, 2));
-	return (((diameter / 2) + (WIN_WIDTH / 2) - (diameter / 2)) + 250);
+	return (((diameter / 2) + (WIN_WIDTH / 2) - (diameter / 2)));
 }
 
 /* -------------------------------------------------------------------------- */
@@ -77,23 +77,21 @@ void	set_default_params(t_vars *vars, int argc, char **argv)
 
 int	handle_event(int key_code, t_vars *vars, int argc, char **argv)
 {
-	if (key_code == KEY_LEFT)
-		vars->mapdata.x_offset -= 2 * vars->mapdata.zoom;
-	else if (key_code == KEY_RIGHT)
-		vars->mapdata.x_offset += 2 * vars->mapdata.zoom;
-	else if (key_code == KEY_DOWN)
-		vars->mapdata.y_offset += 2 * vars->mapdata.zoom;
-	else if (key_code == KEY_UP)
-		vars->mapdata.y_offset -= 2 * vars->mapdata.zoom;
-	else if (key_code == KEY_PAD_ADD || key_code == KEY_PAD_SUB)
+	if (!vars->is_main && (key_code == KEY_LEFT || key_code == KEY_RIGHT \
+		|| key_code == KEY_DOWN || key_code == KEY_UP))
+		handle_xy_offset(vars, key_code);
+	else if (!vars->is_main && (key_code == KEY_PAD_ADD \
+		|| key_code == KEY_PAD_SUB))
 		handle_zoom_event(vars, key_code);
-	else if (key_code == KEY_PAGE_UP || key_code == KEY_PAGE_DOWN)
+	else if (!vars->is_main && (key_code == KEY_PAGE_UP \
+		|| key_code == KEY_PAGE_DOWN))
 		handle_z_offset_event(vars, key_code);
-	else if (key_code == KEY_P)
+	else if (!vars->is_main && key_code == KEY_P)
 		vars->mapdata.iso_pro_bool = !vars->mapdata.iso_pro_bool;
-	else if (key_code == KEY_R)
+	else if (!vars->is_main && key_code == KEY_R)
 		set_default_params(vars, argc, argv);
-	else if (key_code == KEY_X || key_code == KEY_Y || key_code == KEY_Z)
+	else if (!vars->is_main && (key_code == KEY_X \
+		|| key_code == KEY_Y || key_code == KEY_Z))
 		rotate_map(vars, key_code);
 	else if (key_code == KEY_ESCAPE || key_code == 17)
 		handle_err(vars, 0);

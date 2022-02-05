@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 /* -------------------------------------------------------------------------- */
 
@@ -31,6 +31,23 @@ void	handle_z_offset_event(t_vars *vars, int key_code)
 	else if (key_code == KEY_PAGE_DOWN \
 		&& vars->mapdata.z_offset - 1 >= -2147483648)
 		vars->mapdata.z_offset -= 1;
+}
+
+/* -------------------------------------------------------------------------- */
+
+void	handle_xy_offset(t_vars *vars, int key_code)
+{
+	if (!vars->is_main)
+	{
+		if (key_code == KEY_LEFT)
+			vars->mapdata.x_offset -= 2 * vars->mapdata.zoom;
+		else if (key_code == KEY_RIGHT)
+			vars->mapdata.x_offset += 2 * vars->mapdata.zoom;
+		else if (key_code == KEY_DOWN)
+			vars->mapdata.y_offset += 2 * vars->mapdata.zoom;
+		else if (key_code == KEY_UP)
+			vars->mapdata.y_offset -= 2 * vars->mapdata.zoom;
+	}
 }
 
 /* -------------------------------------------------------------------------- */

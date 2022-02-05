@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "./srcs/fdf.h"
 
 /* -------------------------------------------------------------------------- */
 
@@ -46,12 +46,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 && argc != 4)
 		return (handle_err(0, 6), 0);
+	vars.is_main = TRUE;
 	init_mlx_params(&vars);
 	alloc_store_matrix(argv[1], &vars);
 	set_default_params(&vars, argc, argv);
 	draw_map(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img_ptr, 0, 0);
-	write_legend(&vars);
 	mlx_hook(vars.win, KEYPRESS, NOEVENTMASK, handle_event, &vars);
 	mlx_hook(vars.win, 17, NOEVENTMASK, xclose, &vars);
 	mlx_loop(vars.mlx);

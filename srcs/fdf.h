@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_BONUS_H
-# define FDF_BONUS_H
+#ifndef FDF_H
+# define FDF_H
 
 /* -------------------------------- Libraries ------------------------------- */
 # include "../libs/libft/libft.h"
@@ -130,6 +130,7 @@ typedef struct s_vars {
 	void			*mlx;
 	void			*win;
 	int				map_line_len;
+	int				is_main;
 	t_img			img;
 	t_matrix		matrix;
 	t_mapfile		mapfile;
@@ -163,6 +164,7 @@ int		rotate_map(t_vars *vars, int key_code);
 //> --- event_handling_3rd_bonus.c ---------------- <//
 void	handle_zoom_event(t_vars *vars, int key_code);
 void	handle_z_offset_event(t_vars *vars, int key_code);
+void	handle_xy_offset(t_vars *vars, int keycode);
 int		check_cols(char **spltd_line);
 
 //> --- matrix_allocation_bonus.c ----------------- <//
