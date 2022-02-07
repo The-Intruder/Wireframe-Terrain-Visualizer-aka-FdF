@@ -96,7 +96,8 @@ static void	iter_matr(t_vars *vars)
 		x = 0;
 		splt_line = ft_split(vars->mapfile.line, ' ');
 		if (check_cols(splt_line) != vars->matrix.max_x)
-			return (handle_err(vars, 10));
+			return (free_splt_str(splt_line), free(vars->mapfile.line), \
+				handle_err(vars, 10));
 		while (x < vars->matrix.max_x && splt_line[x] && *splt_line[x] != '\n')
 			store_z_cl(vars, splt_line, x++, y);
 		free_splt_str(splt_line);

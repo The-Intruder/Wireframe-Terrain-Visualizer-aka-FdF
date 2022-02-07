@@ -16,6 +16,7 @@
 
 static	void	init_mlx_params(t_vars *vars)
 {
+	vars->matrix.matrix_ptr = NULL;
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return (handle_err(vars, 7));

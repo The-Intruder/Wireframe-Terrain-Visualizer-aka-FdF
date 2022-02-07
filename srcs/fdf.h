@@ -20,6 +20,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
 
 /* --------------------------------- Macros --------------------------------- */
 # define TRUE			1

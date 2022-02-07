@@ -19,9 +19,9 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	sum;
-	char	sign;
+	int	i;
+	int	sum;
+	int	sign;
 
 	i = 0;
 	sum = 0;
@@ -39,4 +39,3 @@ int	ft_atoi(const char *str)
 		sum = (sum * 10) + (str[i++] - '0');
 	return (sum * sign);
 }
-

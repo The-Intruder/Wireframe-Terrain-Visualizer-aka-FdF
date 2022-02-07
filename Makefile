@@ -20,9 +20,6 @@ SRCS_LST := drawing_algo.c \
 	error_handling.c
 SRCS := ${addprefix ${SRCS_DIR}, ${SRCS_LST}}
 
-
-
-
 OBJS_DIR := ./objs/
 OBJS_LST := ${patsubst %.c, %.o, ${SRCS_LST}}
 OBJS := ${addprefix ${OBJS_DIR}, ${OBJS_LST}}
@@ -38,14 +35,15 @@ CC_OPTS := -I /usr/local/include \
 	-L. -lfdf
 
 NAME := libfdf.a
-MAP := pyramide.fdf
+MAP := 42.fdf
 
-.PHONY: all clean fclean re bonus compile execute exclean
 
+.PHONY: all clean fclean re bonus compile execute exclean obj_dir
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${SRCS_DIR}fdf.h
+${NAME}: $(OBJS_DIR) ${OBJS} ${SRCS_DIR}fdf.h
+	@make -C ./libs/libft/
 	@echo "\n${BLU}Creating ${GRA}${NAME} ${BLU}archive file ...${NC}"
 	@ar -rcs ${NAME} ${OBJS}
 	@echo "\n${GRN}Library created successfully ...\n${NC}"
@@ -54,13 +52,18 @@ ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${SRCS_DIR}fdf.h
 	@echo "\n${MGN}Creating ${GRA}$@ ${MGN}file from ${GRA}$< ${MGN}file ...${NC}"
 	@${CC} ${CC_FLAGS} -c $< -o $@
 
+$(OBJS_DIR):
+	@mkdir $(OBJS_DIR)
+
 clean:
 	@echo "\n${RED}Cleaning up Object files ...\n${NC}"
-	@rm -f ${OBJS_DIR}*.o
+	@rm -f ${OBJS_DIR}*.o ./libs/libft/*.o
+	@echo "${RED}Removing ${NC}${GRA}objs/ ${NC}${RED}folder ...\n${NC}"
+	@rm -rf objs
 
 fclean: clean
-	@echo "${RED}Cleaning up the ${GRA}${NAME}${RED} archive file ...\n${NC}"
-	@rm -f ${NAME}
+	@echo "${RED}Cleaning up Archive files ...\n${NC}"
+	@rm -f ${NAME} ./libs/libft/*.a
 
 re: exclean all
 

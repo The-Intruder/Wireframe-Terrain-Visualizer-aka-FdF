@@ -56,7 +56,8 @@ int	xclose(void *v_vars)
 	t_vars	*vars;
 
 	vars = (t_vars *)v_vars;
-	exit(0);
+	handle_err(vars, 0);
+	return (0);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -98,7 +99,8 @@ int	handle_event(int key_code, t_vars *vars, int argc, char **argv)
 	reset_window(vars);
 	draw_map(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
-	write_legend(vars);
+	if (!vars->is_main)
+		write_legend(vars);
 	return (0);
 }
 

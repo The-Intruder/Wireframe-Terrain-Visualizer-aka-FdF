@@ -36,7 +36,7 @@ static char	*final_step(char **the_rest, char **line_ptr)
 	{
 		dummy_ptr = *line_ptr;
 		*the_rest = ft_strdup(ft_strchr(*line_ptr, '\n') + 1);
-		if (!*the_rest) 
+		if (!*the_rest)
 			return (NULL);
 		ft_bzero(ft_strchr(*line_ptr, '\n') + 1, \
 			ft_strlen(ft_strchr(*line_ptr, '\n') + 1));

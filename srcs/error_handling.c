@@ -56,6 +56,8 @@ static void	check_err_num(int err_code)
 		print_colored_error(err_code, "Incorrect argument\n\n", BLD);
 	else if (err_code == 10)
 		print_colored_error(err_code, "Invalid map\n\n", BLD);
+	else if (err_code == 11)
+		print_colored_error(err_code, "Undefined Error\n\n", BLD);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -67,10 +69,11 @@ void	handle_err(t_vars *vars, int err_code)
 	else
 		check_err_num(err_code);
 	ft_putchar_fd('\n', 2);
-	if (vars != 0)
+	if (vars->matrix.matrix_ptr != NULL)
 		deallocate_data(&vars->matrix);
+	mlx_destroy_image(vars->mlx, vars->img.img_ptr);
+	mlx_destroy_window(vars->mlx, vars->win);
 	exit(err_code);
 }
 
 /* -------------------------------------------------------------------------- */
-

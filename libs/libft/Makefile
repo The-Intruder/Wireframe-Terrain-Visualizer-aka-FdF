@@ -10,6 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
+NC := \033[31;0m
+RED := \033[0;31;1m
+YEL := \033[0;33;1m
+GRA := \033[0;37;1m
+CYN := \033[0;36;1m
+GRN := \033[0;32;1m
+MGN := \033[0;35;1m
+BLU := \033[0;34;1m
+
 CC := gcc
 
 FLAGS := -Wall -Wextra -Werror 
@@ -36,10 +45,10 @@ NAME := libft.a
 
 .PHONY: all clean fclean re bonus compile
 
-all: $(OBJS_M) $(NAME)
+all: $(OBJS_M) $(OBJS_B) bonus
 
-bonus: $(OBJS_B) all
-	@echo "\nMaking Object file from $< ..."
+bonus: $(OBJS_B) $(OBJS_M)
+	@echo "\n${BLU}Creating ${GRA}${NAME} ${BLU}archive file ...${NC}"
 	@ar rcs $(NAME) $(OBJS_M) $(OBJS_B)
 
 compile: bonus main.c
@@ -47,7 +56,7 @@ compile: bonus main.c
 	@$(CC) $(FLAGS) main.c -L. -lft
 
 %.o: %.c
-	@echo "\nMaking Object file from $< ..."	
+	@echo "\n${MGN}Creating ${GRA}$@ ${MGN}file from ${GRA}$< ${MGN}file ...${NC}"	
 	@$(CC) $(FLAGS) -o $@ -c $<
 
 $(NAME): $(OBJS_M) libft.h
