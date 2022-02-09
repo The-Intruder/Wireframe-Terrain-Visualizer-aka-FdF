@@ -1,4 +1,8 @@
+---
+
 _**README.md not finished yet**_
+
+---
 
 ```text
  ______________________________________________________________________________
@@ -14,6 +18,9 @@ _**README.md not finished yet**_
 |_______________________\///__________\///////\//___\///_________________:)____|
 |______________________________________________________________________________|
 ```
+
+**FdF Project Score:** [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/mnaimi/FdF)](https://github.com/JaeSeoKim/badge42)
+<br />
 
 # Preface
 
