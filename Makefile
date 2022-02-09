@@ -93,5 +93,3 @@ execute_b: compile_b fdf
 exclean: fclean
 	@echo "${RED}Cleaning up the ${GRA}fdf${RED} executable file ...\n\n${NC}"
 	@rm -f fdf
-
-# DESTROY WIN & IMG BEFORE PROGRAM EXIT
