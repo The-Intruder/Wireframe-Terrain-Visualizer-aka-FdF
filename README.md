@@ -1,3 +1,5 @@
+_**README.md not finished yet**_
+
 ```text
  ______________________________________________________________________________
 |______________________________________________________________________________|
@@ -68,7 +70,7 @@ Naah, for real though, _Minilibx_ is what we will be using to :
 2. Create a Window in which we will be outputing stuff
 3. Create Images _(you'll know why we'll be doing that later on)_
 4. Output strings to the window
-5. Get extremelly frustrated with the project and question your overall life choices in this world.
+5. Get extremelly frustrated with the project and question our overall life choices in this world.
 
 ## Ummm, what the F%!$ is that S%?£ in Figure 1.1
 
@@ -109,6 +111,8 @@ _**Figure 1.4**_
 
 Notice how we get a little rectangle at the top left corner of our window. That's because the top-left most pixel of the window is considered to be the base point of drawing in Computer Graphics and not just _Minilibx_, and it is the `x: 0; y: 0` pixel.
 
+_Note: The little rectangle may seen to have a little empty space in its borttom-right corner, it's just a zooming bug that's on my side._
+
 ### Very useful ressources _(and the base of this README)_
 
 - [42 Minilibx official Repo](https://github.com/42Paris/minilibx-linux)
@@ -123,4 +127,4 @@ Notice how we get a little rectangle at the top left corner of our window. That'
 
 ---
 
-_**P.S.**: If you liked what you've just read, I would really appreciate it if you star this Repo. It really helps with those SEO stuff._
+_**P.S.**: If you liked what you've just read, I would really appreciate it if you star this Repo. It really helps with them SEO stuff._
