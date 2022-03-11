@@ -25,7 +25,9 @@ OBJS_LST := ${patsubst %.c, %.o, ${SRCS_LST}}
 OBJS := ${addprefix ${OBJS_DIR}, ${OBJS_LST}}
 
 CC := gcc
-CC_FLAGS := -Wall -Wextra -Werror
+CC_FLAGS := -Wall -Wextra -Werror \
+	-Ofast -march=native -fno-signed-zeros \
+	-fno-trapping-math
 CC_OPTS := -I /usr/local/include \
 	-L/usr/local/lib/ -lmlx \
 	-framework OpenGL -framework AppKit \
@@ -35,7 +37,7 @@ CC_OPTS := -I /usr/local/include \
 	-L. -lfdf
 
 NAME := libfdf.a
-MAP := 42.fdf
+MAP := elem-fract.fdf
 
 
 .PHONY: all clean fclean re bonus compile execute exclean obj_dir
@@ -72,21 +74,12 @@ bonus: ${OBJS} ${SRCS_DIR}fdf.h
 	@ar -rcs ${NAME} ${OBJS}
 	@echo "\n${GRN}Library created successfully ...\n${NC}"
 
-compile_m: re ${SRCS_DIR}fdf.h fdf_main.c
-	@echo "\n${YEL}Compiling the ${GRA}fdf_main.c ${YEL}...\n${NC}"
-	@${CC} ${CC_FLAGS} ${CC_OPTS} -o fdf fdf_main.c
-	@make fclean
-
-execute_m: compile_m fdf
-	@echo "\n${CYN}Loading X-Window ...${NC}\n"
-	@time ./fdf ./test_maps/${MAP} 20 25
-
-compile_b: re ${SRCS_DIR}fdf.h fdf_main_bonus.c
+compile: re ${SRCS_DIR}fdf.h fdf_main_bonus.c
 	@echo "\n${YEL}Compiling the ${GRA}fdf_main_bonus.c ${YEL}...\n${NC}"
-	@${CC} ${CC_FLAGS} ${CC_OPTS} -o fdf fdf_main_bonus.c
+	@${CC} ${CC_FLAGS} ${CC_OPTS} -o fdf fdf_main_bonus.c 
 	@make fclean
 
-execute_b: compile_b fdf
+execute: compile fdf
 	@echo "\n${CYN}Loading X-Window ...${NC}\n"
 	@time ./fdf ./test_maps/${MAP}
 
