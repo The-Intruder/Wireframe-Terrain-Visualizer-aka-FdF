@@ -37,7 +37,7 @@ CC_OPTS := -I /usr/local/include \
 	-L. -lfdf
 
 NAME := libfdf.a
-MAP := elem-fract.fdf
+MAP := 42.fdf
 
 
 .PHONY: all clean fclean re bonus compile execute exclean obj_dir

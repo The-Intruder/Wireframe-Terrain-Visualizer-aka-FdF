@@ -30,7 +30,7 @@ _No seriouslly though, it is not that hard, I'm just really bad when it comes to
 
 # Projet Description
 
-_FdF_ or as they call it **Fils de Fer** is a program that takes `*.fdf` files as its 1st argument as shown in _Figure 1.1_:
+_FdF_ or as they call it **Fils de Fer** is a program that takes a `*.fdf` file as its 1st argument _(it does take other arguments, but we'll see those later)_ as shown in _Figure 1.1_:
 
 ```text
 $ cat ./test_maps/42.fdf
@@ -79,7 +79,7 @@ Naah, for real though, _Minilibx_ is what we will be using to :
 4. Output strings to the window
 5. Get extremelly frustrated with the project and question our overall life choices in this world.
 
-## Ummm, what the F%!$ is that S%?£ in Figure 1.1
+## Ummm, Figure 1.1, what's that ?!??
 
 _Behold the power of confusion (not really)._
 
@@ -105,12 +105,60 @@ Every number on that—so called—map represents a pixel, its position _(x_axis
  | This one right here is the (x: 0; y: 10) pixel |
   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 ```
-
 _**Figure 1.3**_
 <br />
 
-Each row is considered as a Y_axis, and each column is considered as the X_axis of the map we'll be drawing.
-So if we print every pixel, without any modification, with a function that takes the coordinates of a pixel, in a opened window, and its color _(x, y, cl )_ like `mlx_pixel_put`, we would get something like _Figure 1.4_:
+To be a little bit less confusing, the words that you're seeying right now on your screen are just a bunch of pixels _(very small light-sources, can be LEDs, or LCD, depends on the screen)_ that emit a certain mixture of lights, usually Red, Green, and Blue, _aka_ **RGB**, to produce a certain color, if the text's color is black, it means that they're omitting no light whatsoever _(actually, this is a specific case for LED screens, it's a little bit different with LCD screens, and other types of screen monitors)_, as Black is the color of _nothingness_, and if the text's color is white, it means that they're omitting 100% Red, 100% Green, and 100% Blue. More on all of this in this [Wikipidea article](https://en.wikipedia.org/wiki/Color_theory)
+<br />
+
+You can picture the screen as a matrix, that has a lot of rows and a lot of columns, and at each intersection between these two, we get cells, and in our case, those cells are the tiny-little-itty-bitty Pixels. So now consider each row to be the Y_axis, and each column to be the X_axis, of the map we'll be drawing.
+If we print every pixel, without any modification, with a function that takes the coordinates of a pixel, in a opened window, and its color _(x, y, cl )_ like `mlx_pixel_put`, with the following code:
+
+```c
+#include <mlx.h>
+
+int main(int argc, char **argv)
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int	total_rows;
+	int	total_columns;
+	int	y;
+	int	x;
+
+	// Initialize connection with Graphics Server
+	mlx_ptr = mlx_init();
+	// Initialize a new window
+	win_ptr = mlx_new_window(mlx_ptr, 600, 800, "My first window!");
+
+	// Count of lines on the '.fdf' map
+	total_rows = 11;
+	// Count of numbers (not digits) on the first line of the '.fdf' map
+	total_columns = 19;
+
+	y = 0;
+	while (y < total_rows)
+	{
+		x = 0;
+		while (x < total_columns)
+		{
+			// 0xffffffff is the hex code for the color "white"
+			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xffffffff);
+			++x;
+		}
+		++y;
+	}
+
+	// Keep the window open
+	while (1)
+		continue ;
+
+	return (0);
+}
+```
+<br />
+
+we would get something like this:
 
 ![Figure 1.4](./assets/figure_1_3.png)
 _**Figure 1.4**_
@@ -118,7 +166,13 @@ _**Figure 1.4**_
 
 Notice how we get a little rectangle at the top left corner of our window. That's because the top-left most pixel of the window is considered to be the base point of drawing in Computer Graphics and not just _Minilibx_, and it is the `x: 0; y: 0` pixel.
 
-_Note: The little rectangle may seen to have a little empty space in its borttom-right corner, it's just a zooming bug that's on my side._
+_**Note:** The little rectangle may seen to have a little empty space in its borttom-right corner, it's just a bug that's on my side._
+
+
+## What am I supposed to do now ?!??
+
+Well, you can go take a look at those ressources that I included at the bottom of this `README`, get confortable with the various `<mlx.h>` functions, just the easy ones.
+
 
 ### Very useful ressources _(and the base of this README)_
 
