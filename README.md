@@ -186,6 +186,3 @@ Well, you can go take a look at those ressources that I included at the bottom o
 - [Interesing GitHub repo with a lot of useful stuff](https://github.com/qst0/ft_libgfx#the-graphics-branch)
 - [How to draw in an image instead of directly in the window, and why you should do that.](https://github.com/keuhdall/images_example)
 
----
-
-_**P.S.**: If you liked what you've just read, I would really appreciate it if you star this Repo. It really helps with them SEO stuff._
