@@ -19,7 +19,8 @@ _**README.md not finished yet**_
 |______________________________________________________________________________|
 ```
 
-**FdF Project Score:** [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/mnaimi/FdF)](https://github.com/JaeSeoKim/badge42)
+**FdF Project Score:**<br/>
+[![mnaimi's 42 FdF Score](https://badge42.vercel.app/api/v2/cl1txsvi6008009jppddlp1hr/project/2448125)](https://github.com/JaeSeoKim/badge42)
 <br />
 
 # Preface
