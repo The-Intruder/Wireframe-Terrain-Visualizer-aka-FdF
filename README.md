@@ -125,18 +125,18 @@ Usage:
 _**Note:** Replace `map_file.fdf` with the path to the FdF data file containing the landscape information. The program will read the file and render the corresponding 3D landscape._
 
 2. Navigation Controls:
-  - Rotate: Use the `x`, `y`, or `z` to rotate the scene horizontally, vertically, and diagonally respectively, and view the landscape from different angles.
-  - Zoom: Press the `+` and `-` keys or use the mouse scroll wheel to zoom in and out of the scene.
+    - Rotate: Use the `x`, `y`, or `z` to rotate the scene horizontally, vertically, and diagonally respectively, and view the landscape from different angles.
+    - Zoom: Press the `+` and `-` keys or use the mouse scroll wheel to zoom in and out of the scene.
 
 3. Render Modes:
-FdF supports different render modes to visualize the landscape in various ways. Use the `P` key to switch between modes:
-  - Wireframe mode (default), which displays the landscape as a mesh of lines.
-  - Flat mode, which fills the polygons of the landscape with a flat color.
+  - FdF supports different render modes to visualize the landscape in various ways. Use the `P` key to switch between modes:
+    - Wireframe mode (default), which displays the landscape as a mesh of lines.
+    - Flat mode, which fills the polygons of the landscape with a flat color.
 
 4. Additional Controls:
-- Change Elevation: Press the `PageUp` and `PageDown` keys to increase or decrease the elevation of the landscape.
-- Reset View: Press the `R` key to reset the view to the initial position and orientation.
-- Quit: Press the `Esc` key or close the application window to exit the program.
+    - Change Elevation: Press the `PageUp` and `PageDown` keys to increase or decrease the elevation of the landscape.
+    - Reset View: Press the `R` key to reset the view to the initial position and orientation.
+    - Quit: Press the `Esc` key or close the application window to exit the program.
 
 5. Customize the Program:
 Feel free to modify the FdF source code to add new features, change rendering algorithms, or experiment with different visualization techniques. Recompile the program after making any modifications.
