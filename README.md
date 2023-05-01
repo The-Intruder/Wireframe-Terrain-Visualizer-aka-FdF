@@ -4,7 +4,7 @@
     <img src="https://i.pinimg.com/originals/f6/2d/e6/f62de6bd66da099c0b7c49bd96de8e81.png" alt="Banner">
   </a>
 
-  <h3 align="center">Wireframe Terrain Visualizer _(Fils de Fer)_</h3>
+  <h3 align="center">Wireframe Terrain Visualizer <em>(Fils de Fer)</em></h3>
 
   <p align="center">
     A graphical representation of a landscape using a wireframe and color gradient to simulate a 3D effect
@@ -52,28 +52,28 @@ The FdF (Fil de Fer) project is an intriguing endeavor that aims to create a cap
 
 ## Built With
 
-###### **C Programming Language:**
+##### **C Programming Language:**
 The FdF project is primarily implemented using the C programming language, providing low-level control and efficiency for graphics rendering and data manipulation.
 
-###### **Minilibx Graphics Library:**
+##### **Minilibx Graphics Library:**
 The project utilizes the Minilibx graphics library, which provides functions for window creation, pixel manipulation, and event handling. These libraries offer the necessary tools for rendering and interacting with graphical elements.
 
-###### **Wireframe Rendering Techniques:**
+##### **Wireframe Rendering Techniques:**
 FdF employs wireframe rendering techniques to create a visual representation of landscapes. This involves drawing lines between given points to form a mesh-like structure, simulating the geometry of the landscape.
 
-###### **Data Parsing and Manipulation:**
+##### **Data Parsing and Manipulation:**
 FdF involves parsing data files that represent the landscapes. The project handles parsing and manipulates the data to extract necessary information such as coordinates, elevations, and colors for rendering.
 
-###### **Interactive User Interface Components:**
+##### **Interactive User Interface Components:**
 The project incorporates interactive user interface components to enable users to navigate and explore the landscapes. This includes controls for rotating, zooming, and panning the rendered scene, providing an interactive and immersive experience.
 
-###### **Matrix Transformations:**
+##### **Matrix Transformations:**
 FdF employs matrix transformations such as translation, rotation, and scaling to manipulate the landscape data and transform it into a visually appealing representation. These transformations allow for the positioning and orientation of the rendered elements.
 
-###### **Mathematical Calculations** _(3D Isometric Projection)_**:**
+##### **Mathematical Calculations** _(3D Isometric Projection)_**:**
 The project utilizes mathematical calculations, including 3D projection techniques like isometric or perspective projection, to convert the landscape data into a 3D representation that can be rendered on a 2D screen.
 
-###### **User Input Handling and Event Processing:**
+##### **User Input Handling and Event Processing:**
 FdF incorporates user input handling to capture and process events such as keyboard and mouse interactions. This allows users to interact with the rendered scene and perform actions like rotating the view or changing rendering settings.
 
 
