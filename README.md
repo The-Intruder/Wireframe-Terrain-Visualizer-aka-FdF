@@ -1,181 +1,219 @@
----
+<br/>
+<p align="center">
+  <a href="https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF">
+    <img src="https://i.pinimg.com/originals/f6/2d/e6/f62de6bd66da099c0b7c49bd96de8e81.png" alt="Banner">
+  </a>
 
-_**README.md not finished yet**_
+  <h3 align="center">Wireframe Terrain Visualizer _(Fils de Fer)_</h3>
 
----
+  <p align="center">
+    A graphical representation of a landscape using a wireframe and color gradient to simulate a 3D effect
+    <br/>
+    <br/>
+    <a href="https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF/issues">Report Bug</a>
+    .
+    <a href="https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF/issues">Request Feature</a>
+  </p>
+</p>
 
-```text
- ______________________________________________________________________________
-|______________________________________________________________________________|
-|________________/\\\\\\\\\\\\\\\____/\\\____/\\\\\\\\\\\\\\\__________________|
-|________________\/\\\///////////____\/\\\___\/\\\///////////__________________|
-|_________________\/\\\_______________\/\\\___\/\\\____________________________|
-|__________________\/\\\\\\\\\\\_______\/\\\___\/\\\\\\\\\\\___________________|
-|___________________\/\\\///////___/\\\\\\\\\___\/\\\///////___________________|
-|____________________\/\\\_________/\\\////\\\___\/\\\_________________________|
-|_____________________\/\\\________\/\\\__\/\\\___\/\\\________________________|
-|______________________\/\\\________\//\\\\\\\/\\__\/\\\_______________________|
-|_______________________\///__________\///////\//___\///_________________:)____|
-|______________________________________________________________________________|
+<div  style="display: flex; justify-content: center;">
+<a  href="https://twitter.com/i_am_amine" target="_blank">
+  <img  alt="Twitter Follow"  src="https://img.shields.io/twitter/follow/i_am_amine?style=social">
+</a>
+<img  src="https://img.shields.io/github/repo-size/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF"  alt="Repo Size">
+<img  src="https://img.shields.io/github/last-commit/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF"  alt="Last Commit">
+<img alt="GitHub" src="https://img.shields.io/github/license/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF">
+</div>
+
+## Table Of Contents
+
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
+
+## About The Project
+
+The FdF (Fil de Fer) project is an intriguing endeavor that aims to create a captivating graphical representation of landscapes. It leverages wireframe rendering and color gradients to simulate a mesmerizing three-dimensional effect. By transforming raw data into visually stunning and interactive landscapes, this project showcases the creativity and technical skills of developers.
+
+#### Features
+- Generate visually appealing representations of landscapes.
+- Utilize wireframe rendering to create a distinct visual style.
+- Implement color gradients to simulate a lifelike three-dimensional effect.
+- Interact with the landscapes, exploring different perspectives and angles.
+- Navigate the intricacies of transforming data into immersive graphical representations.
+
+## Built With
+
+###### **C Programming Language:**
+The FdF project is primarily implemented using the C programming language, providing low-level control and efficiency for graphics rendering and data manipulation.
+
+###### **Minilibx Graphics Library:**
+The project utilizes the Minilibx graphics library, which provides functions for window creation, pixel manipulation, and event handling. These libraries offer the necessary tools for rendering and interacting with graphical elements.
+
+###### **Wireframe Rendering Techniques:**
+FdF employs wireframe rendering techniques to create a visual representation of landscapes. This involves drawing lines between given points to form a mesh-like structure, simulating the geometry of the landscape.
+
+###### **Data Parsing and Manipulation:**
+FdF involves parsing data files that represent the landscapes. The project handles parsing and manipulates the data to extract necessary information such as coordinates, elevations, and colors for rendering.
+
+###### **Interactive User Interface Components:**
+The project incorporates interactive user interface components to enable users to navigate and explore the landscapes. This includes controls for rotating, zooming, and panning the rendered scene, providing an interactive and immersive experience.
+
+###### **Matrix Transformations:**
+FdF employs matrix transformations such as translation, rotation, and scaling to manipulate the landscape data and transform it into a visually appealing representation. These transformations allow for the positioning and orientation of the rendered elements.
+
+###### **Mathematical Calculations** _(3D Isometric Projection)_**:**
+The project utilizes mathematical calculations, including 3D projection techniques like isometric or perspective projection, to convert the landscape data into a 3D representation that can be rendered on a 2D screen.
+
+###### **User Input Handling and Event Processing:**
+FdF incorporates user input handling to capture and process events such as keyboard and mouse interactions. This allows users to interact with the rendered scene and perform actions like rotating the view or changing rendering settings.
+
+
+## Getting Started
+
+This following section provides step-by-step instructions for getting started with the FdF project
+
+### Prerequisites
+
+Prerequisites:
+- _**C Compiler:**_ To compile and run the FdF project, you need the `gcc` C compiler installed on your system.
+
+- _**Graphics Library:**_ FdF relies on the MiniLibX graphics library for rendering and interacting with graphical elements. Ensure that you have it installed and set up properly.
+
+- _**Unix-Based Operating System:**_ The project is typically developed and tested on Unix-based operating systems like Linux or macOS. It is recommended to have access to a Unix environment for proper library support and compatibility.
+
+### Installation
+
+Getting Started:
+1. Clone the Repository:
+   Start by cloning the FdF project repository from the official source using the following command:
+
+```bash
+git clone https://github.com/username/fdf.git
 ```
 
-**FdF Project Score:**<br/>
-[![mnaimi's 42 FdF Score](https://badge42.vercel.app/api/v2/cl1txsvi6008009jppddlp1hr/project/2448125)](https://github.com/JaeSeoKim/badge42)
-<br />
+2. Install Graphics Library:
+FdF relies on a graphics library like MiniLibX for rendering. Install the necessary graphics library and set it up according to the provided instructions or documentation.
 
-# Preface
+3. Compile the Project:
+Use a C compiler to compile the FdF project source code. Navigate to the project directory and execute the compilation command. For example:
 
-This project is quite stressfull, specially for someone who doesn't remember the basics of Trigonometry _(or math in general)_, so if you REALLY want to work on _FdF_ aka **Fils de Fer** _(really dumb name btw)_, prepare yourself for some serious headache, unless you're good with VERY BASIC math.
-
-_No seriouslly though, it is not that hard, I'm just really bad when it comes to maths, so please don't be discouraged, it is really worth your while, especially when **good** results start to show up._ :)
-
-# Projet Description
-
-_FdF_ or as they call it **Fils de Fer** is a program that takes a `*.fdf` file as its 1st argument _(it does take other arguments, but we'll see those later)_ as shown in _Figure 1.1_:
-
-```text
-$ cat ./test_maps/42.fdf
-0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
-0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0  0
-0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0  0
-0  0 10 10 10 10 10 10  0  0  0  0 10 10 10 10  0  0  0
-0  0  0 10 10 10 10 10  0  0  0 10 10  0  0  0  0  0  0
-0  0  0  0  0  0 10 10  0  0  0 10 10  0  0  0  0  0  0
-0  0  0  0  0  0 10 10  0  0  0 10 10 10 10 10 10  0  0
-0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-```
-_**Figure 1.1**_
-
-And converts them into actual graphical maps as shown in _Figure 1.2_:
-
-![Figure 1.2](./assets/figure_1_2.png)
-_**Figure 1.2**_
-<br />
-
-That's basically what you should do, but that's just the _Mandatory Part_, the _Bonus Part_ requires you to apply some rotations on the map, some zooming, some altitude manipulation, as well as toggling between different projections _(we'll see what that means in a sec)_, and some other bonus(es) from your choice.
-
-## Minilibx ?!?? What is that ?!??
-
-_Minilibx_ is a _mini_ version of the original graphics library _LibX_.
-
-```text
-        ___________________________
-       \ Yeah, no Sh%! Sherlock !!! \
-         ‾‾‾‾‾ \  | ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-                \ | ^__^ 
-                 \| (oo)\_______
-                    (__)\       )\/\
-                        ||----w |
-                        ||     ||
+```bash
+gcc -o fdf fdf.c -L/path/to/library -lminilibx
 ```
 
-Naah, for real though, _Minilibx_ is what we will be using to :
+_**Note:** Replace `/path/to/library` with the path where the graphics library is installed._
 
-1. Initialiase a connection with the Graphics Server
-2. Create a Window in which we will be outputing stuff
-3. Create Images _(you'll know why we'll be doing that later on)_
-4. Output strings to the window
-5. Get extremelly frustrated with the project and question our overall life choices in this world.
+## Usage
 
-## Ummm, Figure 1.1, what's that ?!??
+Usage:
+1. Start the Program:
+   Run the compiled FdF program using the following command:
 
-_Behold the power of confusion (not really)._
-
-Every number on that—so called—map represents a pixel, its position _(x_axis & y_axis)_, and its altitude _(z)_. Let's explain this a little bit more:
-
-```text
- this pixel right here is the (x: 8; y: 0) pixel
- \______________________   ____________________/
-                        \ /
- 0  0  0  0  0  0  0  0 '0' 0  0  0  0  0  0  0  0  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
- 0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0 '0' < This one right here is 
- 0  0 10 10  0  0 10 10  0  0  0  0  0  0  0 10 10  0  0    the (x: 18; y: 3) pixel
- 0  0 10 10 10 10 10 10  0  0  0  0 10 10 10 10  0  0  0
- 0  0  0 10 10 10 10 10  0  0  0 10 10  0  0  0  0  0  0
- 0  0  0  0  0  0 10 10  0  0  0 10 10  0  0  0  0  0  0
- 0  0  0  0  0  0 10 10  0  0  0 10 10 10 10 10 10  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-'0' 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
- |\
- | \______________________________________________
- | This one right here is the (x: 0; y: 10) pixel |
-  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+```bash
+./fdf map_file.fdf
 ```
-_**Figure 1.3**_
-<br />
 
-To be a little bit less confusing, the words that you're seeying right now on your screen are just a bunch of pixels _(very small light-sources, can be LEDs, or LCD, depends on the screen)_ that emit a certain mixture of lights, usually Red, Green, and Blue, _aka_ **RGB**, to produce a certain color, if the text's color is black, it means that they're omitting no light whatsoever _(actually, this is a specific case for LED screens, it's a little bit different with LCD screens, and other types of screen monitors)_, as Black is the color of _nothingness_, and if the text's color is white, it means that they're omitting 100% Red, 100% Green, and 100% Blue. More on all of this in this [Wikipidea article](https://en.wikipedia.org/wiki/Color_theory)
-<br />
+_**Note:** Replace `map_file.fdf` with the path to the FdF data file containing the landscape information. The program will read the file and render the corresponding 3D landscape._
 
-You can picture the screen as a matrix, that has a lot of rows and a lot of columns, and at each intersection between these two, we get cells, and in our case, those cells are the tiny-little-itty-bitty Pixels. So now consider each row to be the Y_axis, and each column to be the X_axis, of the map we'll be drawing.
-If we print every pixel, without any modification, with a function that takes the coordinates of a pixel, in a opened window, and its color _(x, y, cl )_ like `mlx_pixel_put`, with the following code:
+2. Navigation Controls:
+- Rotate: Use the `x`, `y`, or `z` to rotate the scene horizontally, vertically, and diagonally respectively, and view the landscape from different angles.
+- Zoom: Press the `+` and `-` keys or use the mouse scroll wheel to zoom in and out of the scene.
 
-```c
-#include <mlx.h>
+3. Render Modes:
+FdF supports different render modes to visualize the landscape in various ways. Use the `P` key to switch between modes:
+- Wireframe mode (default), which displays the landscape as a mesh of lines.
+- Flat mode, which fills the polygons of the landscape with a flat color.
 
-int main(int argc, char **argv)
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int	total_rows;
-	int	total_columns;
-	int	y;
-	int	x;
+4. Additional Controls:
+- Change Elevation: Press the `PageUp` and `PageDown` keys to increase or decrease the elevation of the landscape.
+- Reset View: Press the `R` key to reset the view to the initial position and orientation.
+- Quit: Press the `Esc` key or close the application window to exit the program.
 
-	// Initialize connection with Graphics Server
-	mlx_ptr = mlx_init();
-	// Initialize a new window
-	win_ptr = mlx_new_window(mlx_ptr, 600, 800, "My first window!");
+5. Customize the Program:
+Feel free to modify the FdF source code to add new features, change rendering algorithms, or experiment with different visualization techniques. Recompile the program after making any modifications.
 
-	// Count of lines on the '.fdf' map
-	total_rows = 11;
-	// Count of numbers (not digits) on the first line of the '.fdf' map
-	total_columns = 19;
+6. Input Data Format:
+The FdF program reads input data files in a specific format. Ensure that your map file follows the required format, which typically consists of space-separated values representing the elevation of each point in the landscape. Refer to the project documentation or examples for more details on the input file format.
 
-	y = 0;
-	while (y < total_rows)
-	{
-		x = 0;
-		while (x < total_columns)
-		{
-			// 0xffffffff is the hex code for the color "white"
-			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xffffffff);
-			++x;
-		}
-		++y;
-	}
+7. Explore and Analyze:
+Use the FdF program to explore and analyze various landscapes. Experiment with different input files, try out different render modes, and observe the visual representation of elevation changes. Use it as a tool to better understand and analyze geographical data.
 
-	// Keep the window open
-	while (1)
-		continue ;
+8. Report Issues and Contribute:
+If you encounter any issues or have suggestions for improvement, consider reporting them to the project repository's issue tracker. You can also contribute to the project by submitting bug fixes, enhancements, or new features to the official repository.
 
-	return (0);
-}
-```
-<br />
+## Roadmap
 
-we would get something like this:
+This section outlines a suggested roadmap for the FdF project, highlighting key milestones and features that can be implemented to enhance the functionality and user experience of the program.
 
-![Figure 1.4](./assets/figure_1_3.png)
-_**Figure 1.4**_
-<br />
+1. Basic Functionality:
+    - [ ] Implement parsing of the input data file to read and process the landscape data.
+    - [ ] Render the 3D landscape using a wireframe representation.
+    - [ ] Allow basic navigation controls to rotate, zoom, and pan the view of the landscape.
 
-Notice how we get a little rectangle at the top left corner of our window. That's because the top-left most pixel of the window is considered to be the base point of drawing in Computer Graphics and not just _Minilibx_, and it is the `x: 0; y: 0` pixel.
+2. Enhanced Rendering:
+    - [ ] Implement additional rendering modes such as flat shading, Gouraud shading, or Phong shading to provide more visually appealing representations of the landscape.
+    - [ ] Explore color mapping techniques based on elevation to visualize the terrain more effectively.
 
-_**Note:** The little rectangle may seen to have a little empty space in its borttom-right corner, it's just a bug that's on my side._
+3. User Interaction:
+    - [ ] Enable user interaction by allowing the modification of individual points in the landscape.
+    - [ ] Implement dynamic lighting effects to enhance the visual quality of the landscape representation.
+
+4. Advanced Rendering Techniques:
+    - [ ] Explore advanced rendering techniques such as shadow mapping, reflections, or post-processing effects to further improve the visual realism of the landscape.
+    - [ ] Implement advanced shading models like per-pixel lighting or physically-based rendering (PBR) for more accurate lighting simulations.
+
+5. Optimization and Performance:
+    - [ ] Optimize the rendering pipeline to improve performance and efficiency, allowing for larger and more complex landscapes to be rendered smoothly.
+    - [ ] Implement techniques such as level-of-detail (LOD) rendering or geometry instancing to handle high-resolution terrains more efficiently.
+
+6. Additional Features:
+    - [ ] Add support for loading and rendering textures to enhance the visual representation of the landscape.
+    - [ ] Implement terrain generation algorithms to generate procedurally generated landscapes.
+    - [ ] Allow importing and exporting of landscape data in different file formats.
+
+7. User Interface and Configuration:
+    - [ ] Design and implement a user-friendly interface to provide intuitive controls and options for the user to customize the rendering and interaction settings.
+    - [ ] Provide configuration files or settings to allow users to customize various aspects of the program, such as keybindings, default render modes, or window settings.
+
+8. Documentation and Testing:
+    - [ ] Create comprehensive documentation that explains the usage and features of the program.
+    - [ ] Perform thorough testing to ensure the program functions correctly and handles different scenarios.
+
+9. Refinement and Polish:
+    - [ ] Continuously improve and refine the program based on user feedback and testing.
+    - [ ] Address any bugs or issues reported by users and ensure a smooth and stable user experience.
+
+10. Deployment and Distribution:
+    - [ ] Prepare the program for deployment by packaging it into an executable or installer.
+    - [ ] Distribute the program to the intended audience, whether it be classmates, instructors, or the wider community.
 
 
-## What am I supposed to do now ?!??
+## Contributing
 
-Well, you can go take a look at those ressources that I included at the bottom of this `README`, get confortable with the various `<mlx.h>` functions, just the easy ones.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
+* Please make sure you check your spelling and grammar.
+* Create individual PR for each suggestion.
+* Please also read through the [Code Of Conduct](https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
 
+### Creating A Pull Request
 
-### Very useful ressources _(and the base of this README)_
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Very useful ressources _(and the base of this README)_
 
 - [42 Minilibx official Repo](https://github.com/42Paris/minilibx-linux)
 - [Getting Started with the Minilibx](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx)
@@ -187,3 +225,14 @@ Well, you can go take a look at those ressources that I included at the bottom o
 - [Interesing GitHub repo with a lot of useful stuff](https://github.com/qst0/ft_libgfx#the-graphics-branch)
 - [How to draw in an image instead of directly in the window, and why you should do that.](https://github.com/keuhdall/images_example)
 
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/The-Intruder/Wireframe-Terrain-Visualizer-aka-FdF/blob/main/LICENSE.md) for more information.
+
+## Authors
+
+* **Mohamed Amine Naimi** - *Computer Science Student* - [Mohamed Amine Naimi](https://github.com/The-Intruder/) - *Built the FdF Project*
+
+## Acknowledgements
+
+* [The-Intruder](https://github.com/The-Intruder/)
